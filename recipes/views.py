@@ -21,7 +21,7 @@ def follow_index(request):
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-    return render(request, 'follow.html', {
+    return render(request, 'myFollow.html', {
         'page': page,
         'paginator': paginator,
     })
