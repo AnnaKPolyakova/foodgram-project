@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Мои подписки</title>
-    <link rel="stylesheet" href="../users/static/css/myFollow.css">
+    <link rel="stylesheet" href="{% static 'css/myFollow.css' %}">
 </head>
 <body class="body">
 <header class="header">
@@ -162,13 +163,13 @@
         </ul>
     </div>
 </footer>
-<script src="../users/static/js/config/config.js"></script>
-<script src="../users/static/js/components/MainCards.js"></script>
-<script src="../users/static/js/components/MyFollow.js"></script>
-<script src="../users/static/js/components/Subscribe.js"></script>
-<script src="../users/static/js/components/Header.js"></script>
-<script src="../users/static/js/api/Api.js"></script>
-<script src="myFollow.js"></script>
+<script src="{% static 'js/components/config.js' %}"></script>
+<script src="{% static 'js/components/MainCards.js' %}"></script>
+<script src="{% static 'js/components/MyFollow.js' %}"></script>
+<script src="{% static 'js/components/Subscribe.js' %}"></script>
+<script src="{% static 'js/components/Header.js' %}"></script>
+<script src="{% static 'js/api/Api.js' %}"></script>
+<script src="{% static 'js/myFollow.js' %}"></script>
 
 </body>
 </html>

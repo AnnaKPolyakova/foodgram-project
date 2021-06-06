@@ -11,6 +11,17 @@ def index(request):
     page = paginator.get_page(page_number)
     return render(
         request,
-        'indexAuth.html',
+        'index.html',
         {'page': page, 'paginator': paginator}
     )
+
+
+def follow_index(request):
+    post_list = Recipe.objects.filter(author__following__user=request.user)
+    paginator = Paginator(post_list, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    return render(request, 'follow.html', {
+        'page': page,
+        'paginator': paginator,
+    })

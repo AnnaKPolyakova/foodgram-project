@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Рецепты{% endblock %} | Foodgram</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+<!--    для index-->
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<!--для прочих страниц-->
+        <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
 </head>
 <body class="body">
 <header class="header">
@@ -19,4 +23,14 @@
     {% endblock %}
 </main>
 {% include 'footer.html' %}
+<!--    для index-->
+  <script src="{% static 'js/components/MainCards.js' %}"></script>
+  <script src="{% static 'js/components/Purchases.js' %}"></script>
+  <script src="{% static 'js/components/Favorites.js' %}"></script>
+  <script src="{% static 'js/config/config.js' %}"></script>
+  <script src="{% static 'js/components/CardList.js' %}"></script>
+  <script src="{% static 'js/components/Header.js' %}"></script>
+  <script src="{% static 'js/api/Api.js' %}"></script>
+  <script src="{% static 'js/indexAuth.js' %}"></script>
+
 </body>
