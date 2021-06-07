@@ -4,8 +4,19 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('',
+         views.index,
+         name='index'),
     path("follow/",
          views.follow_index,
          name="follow_index"),
+    path("favorite/",
+         views.favorite_index,
+         name="favorite_index"),
+    path('new_recipe/',
+         views.new_recipe,
+         name='new_recipe'),
+    path('shop_list/',
+         views.shop_list,
+         name='shop_list'),
 ]

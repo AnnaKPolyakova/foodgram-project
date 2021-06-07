@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Регистрация {% endblock %}
+{% block nav %}
+    {% include 'nav.html' with singup=True %}
+{% endblock %}
 {% block content %}
     <div class="main__header">
         <h1 class="main__title">Регистрация</h1>

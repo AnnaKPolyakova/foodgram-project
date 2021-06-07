@@ -15,7 +15,9 @@
 </head>
 <body class="body">
 <header class="header">
-    {% include 'nav.html' %}
+    {% block nav %}
+    <!-- Содержимое страницы -->
+    {% endblock %}
 </header>
 <main class="main container">
     {% block content %}
@@ -36,4 +38,8 @@
   <script src="{% static 'js/components/MyFollow.js' %}"></script>
   <script src="{% static 'js/components/Subscribe.js' %}"></script>
   <script src="{% static 'js/myFollow.js' %}"></script>
+  <script src="{% static 'js/utils/debouncing.js' %}"></script>
+  <script src="{% static 'js/new_recipe.js' %}"></script>
+  <script src="{% static 'js/components/ShopList.js' %}"></script>
+  <script src="{% static 'js/shopList.js' %}"></script>
 </body>

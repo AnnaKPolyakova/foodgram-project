@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Выход из системы {% endblock %}
+{% block nav %}
+    {% include 'nav.html' with logout=True %}
+{% endblock %}
 {% block content %}
     <div class="main__header">
         <h1 class="main__title">Вы вышли из системы</h1>

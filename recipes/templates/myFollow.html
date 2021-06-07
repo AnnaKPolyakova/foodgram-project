@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Мои подписки {% endblock %}
 {% load static %}
+{% block nav %}
+    {% include 'nav.html' with follow=True %}
+{% endblock %}
 {% block content %}
     <div class="main__header">
         <h1 class="main__title">Мои подписки</h1>
@@ -14,21 +17,21 @@
             <ul class="card-user__items">
                 <li class="card-user__item">
                     <div class="recipe">
-                        <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                        <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                         <h3 class="recipe__title">Французские тосты</h3>
                         <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                     </div>
                 </li>
                 <li class="card-user__item">
                     <div class="recipe">
-                        <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                        <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                         <h3 class="recipe__title">Французские тосты</h3>
                         <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                     </div>
                 </li>
                 <li class="card-user__item">
                     <div class="recipe">
-                        <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                        <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                         <h3 class="recipe__title">Французские тосты</h3>
                         <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                     </div>
@@ -50,21 +53,21 @@
                 <ul class="card-user__items">
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
                     </li>
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
                     </li>
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
@@ -86,21 +89,21 @@
                 <ul class="card-user__items">
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
                     </li>
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
                     </li>
                     <li class="card-user__item">
                         <div class="recipe">
-                            <img src="../users/static/css/images/testCardImg.png" alt="какой-то-текст" class="recipe__image">
+                            <img src="{% static 'css/images/testCardImg.png' %}" alt="какой-то-текст" class="recipe__image">
                             <h3 class="recipe__title">Французские тосты</h3>
                             <p class="recipe__text"><span class="icon-time"></span> 20 мин.</p>
                         </div>
