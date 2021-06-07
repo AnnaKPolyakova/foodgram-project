@@ -83,6 +83,7 @@ class Recipe(models.Model):
     )
     ingredients = models.ManyToManyField(
         Ingredient,
+        through='RecipeIngredientRelation',
         related_name='ingredient',
         verbose_name='Ингредиент',
         help_text='Добавьте ингредиенты.',
@@ -115,6 +116,20 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class RecipeIngredientRelation(models.Model):
+    recipe = models.ForeignKey(
+        Recipe,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    ingredient = models.ForeignKey(
+        Ingredient,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    amount = models.PositiveIntegerField()
 
 
 class Follow (models.Model):
