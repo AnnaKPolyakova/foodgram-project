@@ -46,14 +46,13 @@ class Measure(models.Model):
 class Ingredient(models.Model):
     title = models.CharField(
         max_length=40,
-        verbose_name='Тег',
+        verbose_name='Название',
         help_text='Не более 40 символов',
     )
-    measure = models.ManyToManyField(
-        Measure,
-        through='IngredientMeasureRelation',
-        related_name='titles',
-        verbose_name="Жанр",
+    measure = models.ForeignKey(
+        Measure, on_delete=models.CASCADE,
+        related_name='measure',
+        verbose_name="Единицы измерения",
     )
 
     class Meta:
@@ -62,22 +61,6 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class IngredientMeasureRelation(models.Model):
-    ingredient = models.ForeignKey(
-        Ingredient,
-        null=True,
-        on_delete=models.SET_NULL
-    )
-    measure = models.ForeignKey(
-        Measure,
-        null=True,
-        on_delete=models.SET_NULL
-    )
-    quantity = models.IntegerField(
-        verbose_name="Количество",
-    )
 
 
 class Recipe(models.Model):
