@@ -1,0 +1,27 @@
+[
+  {
+    "username": "admin",
+    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "": ""
+  },
+  {
+    "username": "ann",
+    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "": ""
+  },
+  {
+    "username": "an2",
+    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "": ""
+  },
+  {
+    "username": "an3",
+    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "": ""
+  },
+  {
+    "username": "an4",
+    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "": ""
+  }
+]

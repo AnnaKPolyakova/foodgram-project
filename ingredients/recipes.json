@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie",
+    "author_id": 1
+  },
+  {
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup",
+    "author_id": 1
+  },
+  {
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato",
+    "author_id": 1
+  },
+  {
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie2",
+    "author_id": 2
+  },
+  {
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup2",
+    "author_id": 1
+  },
+  {
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato2",
+    "author_id": 2
+  },
+  {
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie3",
+    "author_id": 3
+  },
+  {
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup3",
+    "author_id": 3
+  },
+  {
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato3",
+    "author_id": 3
+  },
+  {
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie4",
+    "author_id": 4
+  },
+  {
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup4",
+    "author_id": 4
+  },
+  {
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato4",
+    "author_id": 4
+  }
+]

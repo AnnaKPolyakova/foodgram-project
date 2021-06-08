@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "recipe_id": 1,
+    "teg_id": 1
+  },
+  {
+    "id": 2,
+    "recipe_id": 2,
+    "teg_id": 2
+  },
+  {
+    "id": 3,
+    "recipe_id": 3,
+    "teg_id": 3
+  },
+  {
+    "id": 4,
+    "recipe_id": 4,
+    "teg_id": 4
+  },
+  {
+    "id": 5,
+    "recipe_id": 4,
+    "teg_id": 1
+  },
+  {
+    "id": 6,
+    "recipe_id": 5,
+    "teg_id": 1
+  },
+  {
+    "id": 7,
+    "recipe_id": 5,
+    "teg_id": 4
+  },
+  {
+    "id": 8,
+    "recipe_id": 6,
+    "teg_id": 2
+  },
+  {
+    "id": 9,
+    "recipe_id": 7,
+    "teg_id": 4
+  },
+  {
+    "id": 10,
+    "recipe_id": 8,
+    "teg_id": 3
+  },
+  {
+    "id": 11,
+    "recipe_id": 9,
+    "teg_id": 4
+  },
+  {
+    "id": 12,
+    "recipe_id": 9,
+    "teg_id": 1
+  },
+  {
+    "id": 13,
+    "recipe_id": 10,
+    "teg_id": 1
+  },
+  {
+    "id": 14,
+    "recipe_id": 11,
+    "teg_id": 2
+  },
+  {
+    "id": 15,
+    "recipe_id": 12,
+    "teg_id": 4
+  }
+]
