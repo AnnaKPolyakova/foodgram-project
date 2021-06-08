@@ -94,9 +94,7 @@ class Recipe(models.Model):
         verbose_name='Тег',
         help_text='Добавьте тег (один или несколько).',
     )
-    time = models.DurationField(
-        blank=True,
-        null=True,
+    time = models.PositiveIntegerField(
         verbose_name="Время приготовления",
     )
     slug = models.SlugField(

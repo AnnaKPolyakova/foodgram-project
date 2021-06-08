@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Завтрак",
+    "slug": "breakfast",
+    "description": "рецепты для завтрка"
+  },
+  {
+    "id": 2,
+    "title": "Обед",
+    "slug": "lunch",
+    "description": "рецепты для обеда"
+  },
+  {
+    "id": 3,
+    "title": "Ужин",
+    "slug": "dinner",
+    "description": "рецепты для ужина"
+  }
+]

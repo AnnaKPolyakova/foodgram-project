@@ -17,7 +17,7 @@
   {
     "id": 4,
     "recipe_id": 4,
-    "teg_id": 4
+    "teg_id": 2
   },
   {
     "id": 5,
@@ -32,7 +32,7 @@
   {
     "id": 7,
     "recipe_id": 5,
-    "teg_id": 4
+    "teg_id": 3
   },
   {
     "id": 8,
@@ -42,7 +42,7 @@
   {
     "id": 9,
     "recipe_id": 7,
-    "teg_id": 4
+    "teg_id": 3
   },
   {
     "id": 10,
@@ -52,7 +52,7 @@
   {
     "id": 11,
     "recipe_id": 9,
-    "teg_id": 4
+    "teg_id": 2
   },
   {
     "id": 12,
@@ -72,6 +72,6 @@
   {
     "id": 15,
     "recipe_id": 12,
-    "teg_id": 4
+    "teg_id": 3
   }
 ]

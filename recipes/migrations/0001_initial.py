@@ -96,7 +96,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='recipe',
-            name='ingredients',
+            name='test_data',
             field=models.ManyToManyField(help_text='Добавьте ингредиенты.', related_name='ingredient', through='recipes.RecipeIngredientRelation', to='recipes.Ingredient', verbose_name='Ингредиент'),
         ),
         migrations.AddField(
