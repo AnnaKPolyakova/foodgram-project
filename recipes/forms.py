@@ -8,5 +8,5 @@ class RecipeForm(forms.ModelForm):
     class Meta:
 
         model = Recipe
-        fields = ('title', 'description', 'image', 'ingredients', 'teg',
+        fields = ('title', 'description', 'image', 'ingredients', 'tag',
                   'time', 'slug', )

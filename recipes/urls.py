@@ -19,4 +19,7 @@ urlpatterns = [
     path('shop_list/',
          views.shop_list,
          name='shop_list'),
+    path('tag/<slug:slug>/',
+         views.tag_recipe,
+         name='tag_recipe'),
 ]

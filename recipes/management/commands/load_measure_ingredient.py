@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from recipes.models import Ingredient, Measure, Teg
+from recipes.models import Ingredient, Measure, Tag
 
 
 class Command(BaseCommand):
@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 )
         with open(path[0]) as file:
             for item in json.load(file):
-                Teg.objects.get_or_create(
+                Tag.objects.get_or_create(
                     title=item['title'],
                     slug=item['slug'],
                     description=item['description'],

@@ -2,21 +2,32 @@ from django.db import models
 from users.models import User
 
 
-class Teg(models.Model):
+class Tag(models.Model):
+    ORANGE = 'orange'
+    GREEN = 'green'
+    PURPLE = 'purple'
+
+    COLOR_TYPE_CHOICES = [
+        (ORANGE, 'orange'),
+        (GREEN, 'green'),
+        (PURPLE, 'purple')
+    ]
     title = models.CharField(
         max_length=40,
         verbose_name='Тег',
         help_text='Не более 40 символов',
     )
+
+    color = models.CharField(
+        choices=COLOR_TYPE_CHOICES,
+        max_length=20
+    )
+
     slug = models.SlugField(
         unique=True,
         max_length=40,
         verbose_name='Адрес для страницы с рецептами по тегу',
         help_text='Не более 40 символов',
-    )
-    description = models.TextField(
-        verbose_name='Описание',
-        help_text='Краткое описание',
     )
 
     class Meta:
@@ -87,9 +98,9 @@ class Recipe(models.Model):
         verbose_name='Ингредиент',
         help_text='Добавьте ингредиенты.',
     )
-    teg = models.ManyToManyField(
-        Teg,
-        through='RecipeTegRelation',
+    tag = models.ManyToManyField(
+        Tag,
+        through='RecipeTagRelation',
         related_name='teg',
         verbose_name='Тег',
         help_text='Добавьте тег (один или несколько).',
@@ -145,15 +156,15 @@ class RecipeIngredientRelation(models.Model):
         verbose_name_plural = 'Ингредиенты'
 
 
-class RecipeTegRelation(models.Model):
+class RecipeTagRelation(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         null=True,
         on_delete=models.CASCADE,
         verbose_name='Рецепт'
     )
-    teg = models.ForeignKey(
-        Teg,
+    tag = models.ForeignKey(
+        Tag,
         null=True,
         on_delete=models.CASCADE,
         verbose_name='Рецепт'

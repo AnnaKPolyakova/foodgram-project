@@ -1,27 +1,37 @@
 [
   {
+    "id": 1,
     "username": "admin",
     "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
-    "": ""
+    "first_name": "Ann",
+    "last_name": "Polyakiva"
   },
   {
+    "id": 2,
     "username": "ann",
     "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
-    "": ""
+    "first_name": "Natalya",
+    "last_name": "Ivanova"
   },
   {
+    "id": 3,
     "username": "an2",
     "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
-    "": ""
+    "first_name": "Ксения",
+    "last_name": "Кузнецова"
   },
   {
+    "id": 4,
     "username": "an3",
     "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
-    "": ""
+    "first_name": "Татьяна",
+    "last_name": "Сидорова"
   },
   {
+    "id": 5,
     "username": "an4",
     "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
-    "": ""
+    "first_name": "Ольга",
+    "last_name": "Клет"
   }
 ]

@@ -3,20 +3,33 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm
-from recipes.models import Recipe
+from recipes.models import Recipe, Tag
 
 
 def index(request):
-    post_list = Recipe.objects.all()
-    paginator = Paginator(post_list, 10)
+    recipe_list = Recipe.objects.all()
+    paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
+    tags = Tag.objects.all()
     page = paginator.get_page(page_number)
     return render(
         request,
         'index.html',
-        {'page': page, 'paginator': paginator}
+        {'page': page, 'paginator': paginator, 'tags': tags}
     )
 
+
+def tag_recipe(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    recipe_list = tag.recipe.all()
+    paginator = Paginator(recipe_list, 5)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    return render(request, 'tag_recipe.html', {
+        'tag': tag,
+        'page': page,
+        'paginator': paginator,
+    })
 
 def follow_index(request):
     post_list = Recipe.objects.filter(author__following__user=request.user)

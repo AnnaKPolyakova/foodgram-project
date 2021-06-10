@@ -3,18 +3,18 @@
     "id": 1,
     "title": "Завтрак",
     "slug": "breakfast",
-    "description": "рецепты для завтрка"
+    "color": "orange"
   },
   {
     "id": 2,
     "title": "Обед",
     "slug": "lunch",
-    "description": "рецепты для обеда"
+    "color": "green"
   },
   {
     "id": 3,
     "title": "Ужин",
     "slug": "dinner",
-    "description": "рецепты для ужина"
+    "color": "purple"
   }
 ]
