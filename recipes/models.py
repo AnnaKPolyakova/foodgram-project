@@ -76,7 +76,7 @@ class Ingredient(models.Model):
 class Recipe(models.Model):
     title = models.CharField(
         max_length=200,
-        verbose_name='Рецепт',
+        verbose_name='Название рецепта',
         help_text='Не более 200 символов',
     )
     author = models.ForeignKey(
@@ -86,6 +86,8 @@ class Recipe(models.Model):
     )
     image = models.ImageField(
         upload_to='recipes/',
+        verbose_name='Фото',
+        help_text='Загрузите фото',
     )
     description = models.TextField(
         verbose_name='Описание',
@@ -95,14 +97,14 @@ class Recipe(models.Model):
         Ingredient,
         through='RecipeIngredientRelation',
         related_name='ingredient',
-        verbose_name='Ингредиент',
+        verbose_name='Ингредиенты',
         help_text='Добавьте ингредиенты.',
     )
     tag = models.ManyToManyField(
         Tag,
         through='RecipeTagRelation',
         related_name='teg',
-        verbose_name='Тег',
+        verbose_name='Теги',
         help_text='Добавьте тег (один или несколько).',
     )
     time = models.PositiveIntegerField(

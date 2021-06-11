@@ -11,13 +11,15 @@
     <div class="form-container">
         <form class="form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+                     {% if form.errors %}
+                        <span class="form__error">Ошибка при заполнении поля {{form.errors}}</span>
+                     {% endif %}
+
             <div class="form__group">
-                <label for="id_name" class="form__label">Название рецепта</label>
+                <label for="id_title" class="form__label">Название
+                    рецепта</label>
                 <div class="form__field-group">
-                    <input type="text" id="id_name" name="name" class="form__input">
-                    {% if form.errors %}
-                        <span class="form__error">Ошибка при заполнении поля {{error}}</span>
-                    {% endif %}
+                    <input type="text" id="id_title" name="title" class="form__input">
                     <span class="form__error"></span>
                 </div>
             </div>
@@ -42,18 +44,18 @@
                 </div>
             </div>
             <div class="form__group">
-                <label for="nameIngredient" class="form__label">Ингредиенты</label>
+                <label for="id_ingredients" class="form__label">Ингредиенты</label>
                 <div class="form__field-group">
                     <div class="form__field-group-ingredientes">
                         <div class="form__dropdown">
-                            <input type="text" id="nameIngredient" class="form__input">
+                            <input type="text" id="id_ingredients"
+                                   class="form__input">
                             <div class="form__dropdown-items"></div>
                         </div>
                         <input type="number" id="cantidad" class="form__input" min="0">
                         <label for="cantidad" class="form__label" id="cantidadVal">шт.</label>
                     </div>
                     <div class="form__field-group-ingredientes-container">
-
                     </div>
                     <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
                     <span class="form__error"></span>
@@ -68,6 +70,13 @@
                 </div>
             </div>
             <div class="form__group">
+                <label for="id_slug" class="form__label">Слаг</label>
+                <div class="form__field-group form__field-group_time">
+                    <input type="text" id="id_slug" name="slug" class="form__input">
+                    <span class="form__error"></span>
+                </div>
+            </div>
+            <div class="form__group">
                 <label for="id_description" class="form__label">Описание</label>
                 <div class="form__field-group">
                     <textarea name="description" id="id_description" rows="8" class="form__textarea"></textarea>
@@ -77,7 +86,7 @@
             <div class="form__group">
                 <span class="form__label">Загрузить фото</span>
                 <div class="form__field-group">
-                    <input type="file" name="file" id="id_file">
+                    <input type="file" name="image" id="id_image">
                     <span class="form__error"></span>
                 </div>
             </div>

@@ -2,8 +2,8 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 
-from recipes.forms import RecipeForm
-from recipes.models import Recipe, Tag
+from recipes.forms import RecipeForm, IngredientsForm
+from recipes.models import Recipe, Tag, Ingredient
 
 
 def index(request):
@@ -31,6 +31,7 @@ def tag_recipe(request, slug):
         'paginator': paginator,
     })
 
+
 def follow_index(request):
     post_list = Recipe.objects.filter(author__following__user=request.user)
     paginator = Paginator(post_list, 10)
@@ -55,11 +56,21 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
+    ingredients = IngredientsForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
-        return render(request, 'new_recipe.html', {'form': form})
+        return render(request, 'test.html', {'form': form, 'ingredients': ingredients})
     form.instance.author = request.user
     form.save()
     return redirect('index')
+
+
+def get_ingredients(post):
+    ingredients = {}
+    for key, name in post.items():
+        if key.startswith('nameIngredient'):
+            num = key.partition('_')[-1]
+            ingredients[name] = post[f'valueIngredient_{num}']
+    return ingredients
 
 
 def shop_list(request):
