@@ -59,7 +59,7 @@ def new_recipe(request):
     tag = Tag.objects.all()
     ingredients = IngredientsForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
-        return render(request, 'test.html', {'form': form})
+        return render(request, 'test3.html', {'form': form})
     form.instance.author = request.user
     form.save()
     return redirect('index')
