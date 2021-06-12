@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from recipes.models import Ingredient, Measure, Tag
+from recipes.models import Recipe
 
 
 class Command(BaseCommand):
@@ -14,9 +14,7 @@ class Command(BaseCommand):
     def handle(self, path, **options):
         with open(path[0]) as file:
             for item in json.load(file):
-                Tag.objects.get_or_create(
-                    id=item['id'],
-                    title=item['title'],
-                    slug=item['slug'],
-                    description=item['description'],
-                )
+                recipe = Recipe.objects.get(id = item['recipe_id'])
+                recipe.tag.add(item['tag_id'])
+
+

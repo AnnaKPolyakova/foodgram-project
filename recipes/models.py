@@ -102,7 +102,6 @@ class Recipe(models.Model):
     )
     tag = models.ManyToManyField(
         Tag,
-        through='RecipeTagRelation',
         related_name='teg',
         verbose_name='Теги',
         help_text='Добавьте тег (один или несколько).',
@@ -156,22 +155,3 @@ class RecipeIngredientRelation(models.Model):
         ordering = ['ingredient_order']
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
-
-
-class RecipeTagRelation(models.Model):
-    recipe = models.ForeignKey(
-        Recipe,
-        null=True,
-        on_delete=models.CASCADE,
-        verbose_name='Рецепт'
-    )
-    tag = models.ForeignKey(
-        Tag,
-        null=True,
-        on_delete=models.CASCADE,
-        verbose_name='Рецепт'
-    )
-
-    class Meta:
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'

@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from recipes.models import RecipeTagRelation
+from recipes.models import Ingredient, Measure, Tag
 
 
 class Command(BaseCommand):
@@ -14,8 +14,9 @@ class Command(BaseCommand):
     def handle(self, path, **options):
         with open(path[0]) as file:
             for item in json.load(file):
-                RecipeTagRelation.objects.get_or_create(
+                Tag.objects.get_or_create(
                     id=item['id'],
-                    recipe_id=item['recipe_id'],
-                    teg_id=item['teg_id'],
+                    title=item['title'],
+                    slug=item['slug'],
+                    color=item['color']
                 )

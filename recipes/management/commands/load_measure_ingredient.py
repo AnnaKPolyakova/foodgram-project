@@ -23,10 +23,3 @@ class Command(BaseCommand):
                     title=item['title'],
                     measure=Measure.objects.get(title=item['dimension']),
                 )
-        with open(path[0]) as file:
-            for item in json.load(file):
-                Tag.objects.get_or_create(
-                    title=item['title'],
-                    slug=item['slug'],
-                    description=item['description'],
-                )
