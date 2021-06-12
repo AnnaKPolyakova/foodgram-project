@@ -2,36 +2,41 @@
   {
     "id": 1,
     "username": "admin",
-    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
     "first_name": "Ann",
-    "last_name": "Polyakiva"
+    "last_name": "Polyakiva",
+    "email": "sova408@mail.ru"
   },
   {
     "id": 2,
     "username": "ann",
-    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
     "first_name": "Natalya",
-    "last_name": "Ivanova"
+    "last_name": "Ivanova",
+    "email": "ann@mail.ru"
   },
   {
     "id": 3,
     "username": "an2",
-    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
     "first_name": "Ксения",
-    "last_name": "Кузнецова"
+    "last_name": "Кузнецова",
+    "email": "an2@mail.ru"
   },
   {
     "id": 4,
     "username": "an3",
-    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
     "first_name": "Татьяна",
-    "last_name": "Сидорова"
+    "last_name": "Сидорова",
+    "email": "an3@mail.ru"
   },
   {
     "id": 5,
     "username": "an4",
-    "password": "pbkdf2_sha256$260000$oju3jh4NjEhMCWa9PZysiR$lZ1NNNBEtLh7t7BbFrNPrYkFC1yKn7V1OZttS01L4ls",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
     "first_name": "Ольга",
-    "last_name": "Клет"
+    "last_name": "Клет",
+    "email": "an4@mail.ru"
   }
 ]

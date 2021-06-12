@@ -18,6 +18,7 @@ class Command(BaseCommand):
                     id=item['id'],
                     username=item['username'],
                     password=item['password'],
+                    email=item['email'],
                     is_superuser=True,
                     is_staff=True,
                     is_active=True,
