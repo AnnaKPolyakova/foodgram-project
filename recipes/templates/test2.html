@@ -23,13 +23,23 @@
                 </div>
             </div>
             <div class="form__group">
+                <label for="id_title" class="form__label">Cлаг</label>
+                <div class="form__field-group">
+                    <input type="text" id="id_slug" name="slug"
+                           class="form__input">
+                    <span class="form__error"></span>
+                </div>
+            </div>
+            <div class="form__group">
                 <p class="form__label">Теги</p>
                 <div class="form__field-group">
                     <div class="tags">
                         <div class="tags__item">
-                            <input type="checkbox" name="tags" id="id_tags"
-                                   class="tags__checkbox tags__checkbox_style_{{ tags.color }}">
-                            <label for="id_tags" class="tags__label">{{ tags.title }}</label>
+                            {% for tag_f in tags_form %}
+                            <input type="text" name="tag" id="id_tag"
+                                   class="tags__checkbox tags__checkbox_style_{{ tag_f.color }}">
+                            <label for="id_tag" class="tags__label">{{ tag_f.title }}</label>
+                            {% endfor %}
                         </div>
                     </div>
                     <span class="form__error"></span>
@@ -81,4 +91,11 @@
             </div>
         </form>
     </div>
+{% endblock %}
+{% block JS %}
+  <script src="{% static 'js/config/config.js' %}"></script>
+  <script src="{% static 'js/components/Header.js' %}"></script>
+  <script src="{% static 'js/utils/debouncing.js' %}"></script>
+  <script src="{% static 'js/api/Api.js' %}"></script>
+  <script src="{% static 'js/new_recipe.js' %}"></script>
 {% endblock %}

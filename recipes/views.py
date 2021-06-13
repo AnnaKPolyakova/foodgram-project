@@ -56,10 +56,10 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
-    tag = Tag.objects.all()
-    ingredients = IngredientsForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
-        return render(request, 'test3.html', {'form': form})
+        return render(
+            request, 'test3.html', {'form': form, 'tags_form': Tag.objects.all()}
+        )
     form.instance.author = request.user
     form.save()
     return redirect('index')
