@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from . import views
+from .api import getIngredients
 
 urlpatterns = [
     path('',
@@ -22,4 +23,7 @@ urlpatterns = [
     path('tag/<slug:slug>/',
          views.tag_recipe,
          name='tag_recipe'),
+    path('ingredients/',
+         getIngredients,
+         name='api_ingredients'),
 ]

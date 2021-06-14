@@ -1,7 +1,7 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableInlineAdminMixin
 
-from recipes.models import Tag, Measure, Ingredient, Recipe, RecipeIngredientRelation
+from recipes.models import Tag, Ingredient, Recipe, RecipeIngredientRelation
 
 
 class RecipeIngredientLine(SortableInlineAdminMixin, admin.TabularInline):
@@ -30,13 +30,12 @@ class IngredientAdmin(admin.ModelAdmin):
 class RecipeAdmin(admin.ModelAdmin):
     filter_horizontal = ('tag',)
     inlines = (RecipeIngredientLine,)
-    list_display = ('title', 'author', 'time', 'slug', 'pub_date',)
+    list_display = ('title', 'author', 'time', 'pub_date',)
     search_fields = ('title', 'author', 'tag', 'time', 'slug', 'pub_date',)
     empty_value_display = '-пусто-'
 
 
 admin.site.register(Tag, TegAdmin)
-admin.site.register(Measure, MeasureAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 

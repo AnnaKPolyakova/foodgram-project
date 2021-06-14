@@ -38,30 +38,14 @@ class Tag(models.Model):
         return self.title
 
 
-class Measure(models.Model):
-    title = models.CharField(
-        max_length=40,
-        verbose_name='Название',
-        help_text='Не более 40 символов',
-    )
-
-    class Meta:
-        verbose_name = 'Единица измерения'
-        verbose_name_plural = 'Единицы измерения'
-
-    def __str__(self):
-        return self.title
-
-
 class Ingredient(models.Model):
     title = models.CharField(
         max_length=40,
         verbose_name='Название',
         help_text='Не более 40 символов',
     )
-    measure = models.ForeignKey(
-        Measure, on_delete=models.CASCADE,
-        related_name='measure',
+    measure = models.CharField(
+        max_length=40,
         verbose_name="Единицы измерения",
     )
 
@@ -106,14 +90,9 @@ class Recipe(models.Model):
         verbose_name='Теги',
         help_text='Добавьте тег (один или несколько).',
     )
+
     time = models.PositiveIntegerField(
         verbose_name="Время приготовления",
-    )
-    slug = models.SlugField(
-        unique=True,
-        max_length=40,
-        verbose_name='Адрес для страницы с рецептом',
-        help_text='Не более 40 символов',
     )
 
     pub_date = models.DateTimeField(
@@ -142,7 +121,6 @@ class RecipeIngredientRelation(models.Model):
         verbose_name='Ингредиент'
     )
     ingredient_order = models.PositiveIntegerField(
-        default=0,
         blank=False,
         null=False
     )

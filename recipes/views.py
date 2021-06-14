@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm, IngredientsForm
-from recipes.models import Recipe, Tag, Ingredient
+from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation
 
+INGREDIENT = 'nameIngredient_'
+AMOUNT = 'valueIngredient_'
 
 def index(request):
     recipe_list = Recipe.objects.all()
@@ -61,9 +63,19 @@ def new_recipe(request):
             request, 'test3.html', {'form': form, 'tags_form': Tag.objects.all()}
         )
     form.instance.author = request.user
-    form.save()
+    recipe = form.save()
+    ingredient_order = 0
+    for field, value in request.POST.items():
+        if field.find(INGREDIENT, 0) != -1:
+            field_split = field.split('_')
+            RecipeIngredientRelation.objects.create(
+                ingredient=get_object_or_404(Ingredient, title=value),
+                amount=request.POST[f'{AMOUNT}{field_split[1]}'],
+                recipe=recipe,
+                ingredient_order=ingredient_order,
+            )
+            ingredient_order += 1
     return redirect('index')
-
 
 def get_ingredients(post):
     ingredients = {}

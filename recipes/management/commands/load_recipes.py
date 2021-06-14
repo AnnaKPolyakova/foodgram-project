@@ -19,7 +19,6 @@ class Command(BaseCommand):
                     title=item['title'],
                     image=item['image'],
                     description=item['description'],
-                    slug=item['slug'],
                     author_id=item['author_id'],
                     time=item['time'],
                 )

@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from recipes.models import Ingredient, Measure, RecipeIngredientRelation
+from recipes.models import RecipeIngredientRelation
 
 
 class Command(BaseCommand):

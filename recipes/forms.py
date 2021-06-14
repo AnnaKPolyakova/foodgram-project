@@ -8,12 +8,12 @@ class RecipeForm(forms.ModelForm):
     class Meta:
 
         model = Recipe
-        fields = ('title', 'tag', 'time', 'description',
-                  'image', 'slug', )
-
-    widgets = {
-        'tag': forms.CheckboxSelectMultiple()
-    }
+        fields = ('title', 'time', 'description',
+                  'image', )
+    #
+    # widgets = {
+    #     'tag': forms.CheckboxSelectMultiple()
+    # }
 
 
 class IngredientsForm (forms.ModelForm):

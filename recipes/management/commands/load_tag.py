@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from recipes.models import Ingredient, Measure, Tag
+from recipes.models import Tag
 
 
 class Command(BaseCommand):
