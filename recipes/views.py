@@ -58,9 +58,10 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
+    tags = Tag.objects.all()
     if not form.is_valid():
         return render(
-            request, 'test3.html', {'form': form, 'tags_form': Tag.objects.all()}
+            request, 'test3.html', {'form': form, 'tags': tags}
         )
     form.instance.author = request.user
     recipe = form.save()
@@ -75,15 +76,11 @@ def new_recipe(request):
                 ingredient_order=ingredient_order,
             )
             ingredient_order += 1
+        for tag in tags:
+            if field == tag.title:
+                recipe.tag.add(tag.id)
+    recipe.save()
     return redirect('index')
-
-def get_ingredients(post):
-    ingredients = {}
-    for key, name in post.items():
-        if key.startswith('nameIngredient'):
-            num = key.partition('_')[-1]
-            ingredients[name] = post[f'valueIngredient_{num}']
-    return ingredients
 
 
 def shop_list(request):

@@ -14,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, path, **options):
         with open(path[0]) as file:
             for item in json.load(file):
-                recipe = Recipe.objects.get(id = item['recipe_id'])
+                recipe = Recipe.objects.get(id=item['recipe_id'])
                 recipe.tag.add(item['tag_id'])
                 recipe.save()
 
