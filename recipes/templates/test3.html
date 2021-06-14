@@ -22,8 +22,6 @@
                     <span class="form__error"></span>
                 </div>
             </div>
-
-
             <div class="form__group">
                 <p class="form__label">Теги</p>
                 <div class="form__field-group">
@@ -31,16 +29,13 @@
                         {% for tag in tags %}
                         <div class="tags__item">
                             <input type="checkbox" name={{ tag.title }}
-                                   id="id_breakfast"
+                                   id="id_{{ tag.title }}"
                                    class="tags__checkbox tags__checkbox_style_{{ tag.color }}">
                             <label for="id_breakfast" class="tags__label">{{ tag.title }}</label>
                         </div>
                         {% endfor %}
                     </div>
                     <span class="form__error"></span>
-
-
-
                 </div>
             </div>
             <div class="form__group">
