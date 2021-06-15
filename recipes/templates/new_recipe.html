@@ -19,14 +19,15 @@
                         {% url 'recipe_edit' recipe.author.username recipe.id %}
                     {% endif %}">
                         {% csrf_token %}
-                     {% if form.errors %}
+                    {% if form.errors %}
                         <span class="form__error">Ошибка при заполнении поля {{form.errors}}</span>
                      {% endif %}
-            <div class="form__group">
+           <div class="form__group">
                 <label for="id_title" class="form__label">Название рецепта</label>
                 <div class="form__field-group">
-                    <input type="text" id="id" name="title" class="form__input">
-                    <span class="form__error"></span>
+                    <input type="text" id=id_title name="title" class="form__input"
+                        value="{{ form.title.value | default_if_none:'' }}">
+                    <span class="form__error">{{ form.title.errors }}</span>
                 </div>
             </div>
             <div class="form__group">
@@ -79,7 +80,8 @@
             <div class="form__group">
                 <label for="id_time" class="form__label">Время приготовления</label>
                 <div class="form__field-group form__field-group_time">
-                    <input type="number" id="id_time" name="time" class="form__input" min="0">
+                    <input type="number" id="id_time" name="time" class="form__input" min="0"
+                    value="{{ form.time.value | default_if_none:'' }}">
                     <label for="id_time" class="form__label">минут</label>
                     <span class="form__error"></span>
                 </div>
@@ -94,7 +96,8 @@
             <div class="form__group">
                 <span class="form__label">Загрузить фото</span>
                 <div class="form__field-group">
-                    <input type="file" name="image" id="id_file">
+                    <input type="file" name="image" id="id_file"
+                           value="{{ form.image.value | default_if_none:'' }}">
                     <span class="form__error"></span>
                 </div>
             </div>

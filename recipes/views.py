@@ -83,10 +83,8 @@ def new_recipe(request):
 def recipe_edit(request, username, recipe_id):
     if request.user.username != username:
         return redirect('recipe', username, recipe_id)
-    recipe = get_object_or_404(
-        Recipe,
-        id=recipe_id,
-    )
+    recipe = get_object_or_404(Recipe, author__username=username, id=recipe_id)
+
     form = RecipeForm(data=request.GET or None,
                       files=request.FILES or None,
                       instance=recipe)
