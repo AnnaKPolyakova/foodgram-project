@@ -18,6 +18,8 @@ class Command(BaseCommand):
                     id=item['id'],
                     username=item['username'],
                     password=item['password'],
+                    first_name=item['first_name'],
+                    last_name=item['last_name'],
                     email=item['email'],
                     is_superuser=True,
                     is_staff=True,

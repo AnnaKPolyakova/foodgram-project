@@ -8,6 +8,7 @@ from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation
 INGREDIENT = 'nameIngredient_'
 AMOUNT = 'valueIngredient_'
 
+
 def index(request):
     recipe_list = Recipe.objects.all()
     paginator = Paginator(recipe_list, 9)
@@ -58,10 +59,9 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
-    tags = Tag.objects.all()
     if not form.is_valid():
         return render(
-            request, 'test3.html', {'form': form, 'tags': tags}
+            request, 'new_recipe.html', {'form': form}
         )
     form.instance.author = request.user
     recipe = form.save()
@@ -76,11 +76,66 @@ def new_recipe(request):
                 ingredient_order=ingredient_order,
             )
             ingredient_order += 1
-        for tag in tags:
-            if field == tag.title:
-                recipe.tag.add(tag.id)
     recipe.save()
     return redirect('index')
+
+#
+# def post_edit(request, username, post_id):
+#     if request.user.username != username:
+#         return redirect('post', username, post_id)
+#     post = get_object_or_404(Post,
+#                              id=post_id,
+#                              author__username=username)
+#     form = PostForm(request.POST or None,
+#                     files=request.FILES or None,
+#                     instance=post)
+#     if not form.is_valid():
+#         return render(request, "new_post.html", {'form': form, 'post': post})
+#     form.instance.author = request.user
+#     form.save()
+#     return redirect('post', username, post_id)
+
+
+def recipe_edit(request, username, recipe_id):
+    if request.user.username != username:
+        return redirect('recipe', username, recipe_id)
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id,
+    )
+    form = RecipeForm(data=request.GET or None,
+                      files=request.FILES or None,
+                      instance=recipe)
+    ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
+    if not form.is_valid():
+        return render(
+            request, 'new_recipe.html', {'form': form,
+                                         'recipe': recipe,
+                                         'ingredients': ingredients}
+        )
+    form.instance.author = request.user
+    recipe = form.save()
+    ingredient_order = 0
+    for field, value in request.POST.items():
+        if field.find(INGREDIENT, 0) != -1:
+            field_split = field.split('_')
+            RecipeIngredientRelation.objects.create(
+                ingredient=get_object_or_404(Ingredient, title=value),
+                amount=request.POST[f'{AMOUNT}{field_split[1]}'],
+                recipe=recipe,
+                ingredient_order=ingredient_order,
+            )
+            ingredient_order += 1
+    recipe.save()
+    return redirect('index')
+
+
+def recipe_view(request, username, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id, author__username=username)
+    return render(request, 'recipe.html', {
+        'recipe': recipe,
+        'author': recipe.author,
+    })
 
 
 def shop_list(request):

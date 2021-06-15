@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Вход на сайт {% endblock %}
+{% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/pages/form.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' with login=True %}
 {% endblock %}

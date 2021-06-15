@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Избранное {% endblock %}
 {% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' with favorite=True %}
 {% endblock %}

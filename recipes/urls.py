@@ -26,4 +26,10 @@ urlpatterns = [
     path('ingredients/',
          getIngredients,
          name='api_ingredients'),
+    path('<str:username>/<int:recipe_id>/edit/',
+         views.recipe_edit,
+         name='recipe_edit'),
+    path('<str:username>/<int:recipe_id>/',
+         views.recipe_view,
+         name='recipe'),
 ]

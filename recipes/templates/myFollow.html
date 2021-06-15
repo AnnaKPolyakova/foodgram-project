@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Мои подписки {% endblock %}
 {% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/pages/myFollow.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' with follow=True %}
 {% endblock %}

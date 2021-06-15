@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Создание рецепта {% endblock %}
 {% load static %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/pages/shopList.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' with shop_list=True %}
 {% endblock %}

@@ -113,11 +113,13 @@ class RecipeIngredientRelation(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
+        related_name='recipe_m2m',
         verbose_name='Рецепт'
     )
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
+        related_name='ingredient_m2m',
         verbose_name='Ингредиент'
     )
     ingredient_order = models.PositiveIntegerField(
