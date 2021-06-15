@@ -79,22 +79,6 @@ def new_recipe(request):
     recipe.save()
     return redirect('index')
 
-#
-# def post_edit(request, username, post_id):
-#     if request.user.username != username:
-#         return redirect('post', username, post_id)
-#     post = get_object_or_404(Post,
-#                              id=post_id,
-#                              author__username=username)
-#     form = PostForm(request.POST or None,
-#                     files=request.FILES or None,
-#                     instance=post)
-#     if not form.is_valid():
-#         return render(request, "new_post.html", {'form': form, 'post': post})
-#     form.instance.author = request.user
-#     form.save()
-#     return redirect('post', username, post_id)
-
 
 def recipe_edit(request, username, recipe_id):
     if request.user.username != username:
@@ -136,6 +120,17 @@ def recipe_view(request, username, recipe_id):
         'recipe': recipe,
         'author': recipe.author,
     })
+
+
+def recipe_delete(request, username, recipe_id):
+    recipe = get_object_or_404(
+        Recipe,
+        author=request.user,
+        id=recipe_id
+    )
+    if recipe.author == request.user:
+        recipe.delete()
+        return redirect('index')
 
 
 def shop_list(request):

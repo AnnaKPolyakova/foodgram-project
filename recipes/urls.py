@@ -32,4 +32,8 @@ urlpatterns = [
     path('<str:username>/<int:recipe_id>/',
          views.recipe_view,
          name='recipe'),
+    path('<str:username>/<int:recipe_id>/delete/',
+         views.recipe_delete,
+         name='recipe_delete'),
 ]
+
