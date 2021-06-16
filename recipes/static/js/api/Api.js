@@ -48,9 +48,10 @@ class Api {
       })
   }
   addSubscriptions(id) {
-    return fetch(`/subscriptions`, {
+    return fetch(`/subscriptions/`, {
       method: 'POST',
       headers: {
+        'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({

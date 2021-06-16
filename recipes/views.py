@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm, IngredientsForm
-from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation
+from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, Follow
+from users.models import User
 
 INGREDIENT = 'nameIngredient_'
 AMOUNT = 'valueIngredient_'
@@ -129,6 +130,28 @@ def recipe_delete(request, username, recipe_id):
     if recipe.author == request.user:
         recipe.delete()
         return redirect('index')
+
+
+def author_page(request, username):
+    author = get_object_or_404(User, username=username)
+    recipe_list = author.recipes.all()
+    id = author.id
+    tags = Tag.objects.all()
+    paginator = Paginator(recipe_list, 9)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+    following = (request.user.is_authenticated and
+                 author != request.user and
+                 Follow.objects.filter(author=author,
+                                       user=request.user).exists())
+    return render(request, 'author_page.html', {
+        'author': author,
+        'page': page,
+        'tags': tags,
+        'id': id,
+        'paginator': paginator,
+        'following': following,
+    })
 
 
 def shop_list(request):

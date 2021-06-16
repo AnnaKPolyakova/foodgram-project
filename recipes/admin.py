@@ -1,7 +1,8 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableInlineAdminMixin
 
-from recipes.models import Tag, Ingredient, Recipe, RecipeIngredientRelation
+from recipes.models import Tag, Ingredient, Recipe, RecipeIngredientRelation, \
+    Follow
 
 
 class RecipeIngredientLine(SortableInlineAdminMixin, admin.TabularInline):
@@ -35,6 +36,13 @@ class RecipeAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+class FollowAdmin(admin.ModelAdmin):
+    list_display = ('user', 'author',)
+    search_fields = ('user', 'author',)
+    empty_value_display = '-пусто-'
+
+
+admin.site.register(Follow, FollowAdmin)
 admin.site.register(Tag, TegAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)

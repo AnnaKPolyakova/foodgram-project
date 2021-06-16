@@ -42,7 +42,7 @@ const purchases = new Purchases(configButton.purchases, api);
 const favorites = new Favorites(configButton.favorites, api);
 const subscribe = new Subscribe(configButton.subscribe, api);
 
-const authorRecipe = new AuthorRecipe(container, '.card', header, api, true, {
+const author_page = new AuthorRecipe(container, '.card', header, api, true, {
     purchases,
     favorites
 });
@@ -51,7 +51,7 @@ const authorRecipeSubscribe = new AuthorRecipe(container_subscribe, '.author-sub
     subscribe
 });
 
-authorRecipe.addEvent();
+author_page.addEvent();
 authorRecipeSubscribe.addEvent();
 
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+from .api import profile_follow, profile_unfollow
 
 from . import views
 from .api import getIngredients
@@ -7,7 +8,14 @@ from .api import getIngredients
 urlpatterns = [
     path('',
          views.index,
-         name='index'),
+         name='index'
+         ),
+    path('subscriptions/',
+         profile_follow,
+         name='profile_follow'),
+    path('subscriptions/<int:follow_id>/',
+         profile_unfollow,
+         name='profile_unfollow'),
     path("follow/",
          views.follow_index,
          name="follow_index"),
@@ -35,5 +43,8 @@ urlpatterns = [
     path('<str:username>/<int:recipe_id>/delete/',
          views.recipe_delete,
          name='recipe_delete'),
+    path('<str:username>/',
+         views.author_page,
+         name='author_page'),
 ]
 

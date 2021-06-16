@@ -89,7 +89,7 @@
             <div class="form__group">
                 <label for="id_description" class="form__label">Описание</label>
                 <div class="form__field-group">
-                    <textarea name="description" id="id_description" rows="8" class="form__textarea"></textarea>
+                    <textarea name="description" id="id_description" rows="8" class="form__textarea">{{ form.description.value | default_if_none:'' }}</textarea>
                     <span class="form__error"></span>
                 </div>
             </div>
@@ -97,16 +97,19 @@
                 <span class="form__label">Загрузить фото</span>
                 <div class="form__field-group">
                     <input type="file" name="image" id="id_file"
-                           value="{{ form.image.value | default_if_none:'' }}">
+                           value="{{ form.image.url }} | default_if_none:'' }}">
                     <span class="form__error"></span>
                 </div>
             </div>
             <div class="form__footer">
+              </button>
                 {% if not recipe %}
-                    <button class="button button_style_blue">Создать
+                    <button  type="submit"
+                             class="button button_style_blue">Создать
                         рецепт</button>
                 {% else %}
-                    <button class="button button_style_blue">Сохранить
+                    <button type="submit"
+                            class="button button_style_blue">Сохранить
                     </button> <a style="margin-left: 2.5em" href="{% url 'recipe_delete' recipe.author.username recipe.id %}" class="form__ingredient-link">Удалить</a>
                 {% endif %}
             </div>
