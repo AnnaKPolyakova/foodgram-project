@@ -38,5 +38,29 @@
     "first_name": "Ольга",
     "last_name": "Клет",
     "email": "an4@mail.ru"
+  },
+  {
+    "id": 6,
+    "username": "an5",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
+    "first_name": "Таня",
+    "last_name": "Сидорова",
+    "email": "an8@mail.ru"
+  },
+  {
+    "id": 7,
+    "username": "an6",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
+    "first_name": "Маня",
+    "last_name": "Титова",
+    "email": "an6@mail.ru"
+  },
+  {
+    "id": 8,
+    "username": "an7",
+    "password": "pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=",
+    "first_name": "Ксюша",
+    "last_name": "Дулова",
+    "email": "an7@mail.ru"
   }
 ]

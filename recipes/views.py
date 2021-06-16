@@ -38,11 +38,11 @@ def tag_recipe(request, slug):
 
 def follow_index(request):
     follower = request.user.follower.all()
+    follower_list = []
     for follow in follower:
-        id_following = follow.author.id
-
-        recipe_list = Recipe.objects.filter(author__following__user=request.user)
-    paginator = Paginator(post_list, 10)
+        follower_list.append({'author': follow.author,
+                              'recipes': follow.author.recipes.all()})
+    paginator = Paginator(follower_list, 3)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'myFollow.html', {

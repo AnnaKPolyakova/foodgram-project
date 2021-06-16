@@ -11,3 +11,12 @@ id,title,image,description,slug,author_id, time
 10,Печенье,recipes/testCardImg_n4HZlde.png,Очень вкусное печенье,cookie4,4,20
 11,Суп,recipes/testCardImg_n4HZlde.png, Очень вкусный суп,soup4,4,20
 12,Картошка,recipes/testCardImg_n4HZlde.png, Очень вкусная картошка,potato4,4,20
+13,Суп,recipes/testCardImg_n4HZlde.png, Очень вкусный суп,soup2,8,20
+14,Картошка,recipes/testCardImg_n4HZlde.png, Очень вкусная картошка,potato2,8,20
+15,Печенье,recipes/testCardImg_n4HZlde.png,Очень вкусное печенье,cookie3,8,20
+16,Суп,recipes/testCardImg_n4HZlde.png, Очень вкусный суп,soup3,7,70
+17,Картошка,recipes/testCardImg_n4HZlde.png, Очень вкусная картошка,potato3,7,70
+18,Печенье,recipes/testCardImg_n4HZlde.png,Очень вкусное печенье,cookie4,7,90
+19,Суп,recipes/testCardImg_n4HZlde.png, Очень вкусный суп,soup4,7,70
+20,Картошка,recipes/testCardImg_n4HZlde.png, Очень вкусная картошка,potato4,7,5
+21,Картошка,recipes/testCardImg_n4HZlde.png, Очень вкусная картошка,potato4,8,60

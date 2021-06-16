@@ -106,5 +106,86 @@
     "slug": "potato4",
     "author_id": 4,
     "time": 20
+  },
+  {
+    "id": 13,
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup2",
+    "author_id": 8,
+    "time": 20
+  },
+  {
+    "id": 14,
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato2",
+    "author_id": 8,
+    "time": 20
+  },
+  {
+    "id": 15,
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie3",
+    "author_id": 8,
+    "time": 20
+  },
+  {
+    "id": 16,
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup3",
+    "author_id": 7,
+    "time": 70
+  },
+  {
+    "id": 17,
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato3",
+    "author_id": 7,
+    "time": 70
+  },
+  {
+    "id": 18,
+    "title": "Печенье",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусное печенье",
+    "slug": "cookie4",
+    "author_id": 7,
+    "time": 90
+  },
+  {
+    "id": 19,
+    "title": "Суп",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусный суп",
+    "slug": "soup4",
+    "author_id": 7,
+    "time": 70
+  },
+  {
+    "id": 20,
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato4",
+    "author_id": 7,
+    "time": 5
+  },
+  {
+    "id": 21,
+    "title": "Картошка",
+    "image": "recipes/testCardImg_n4HZlde.png",
+    "description": "Очень вкусная картошка",
+    "slug": "potato4",
+    "author_id": 8,
+    "time": 60
   }
 ]
