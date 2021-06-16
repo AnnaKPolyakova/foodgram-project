@@ -1,3 +1,5 @@
+import json
+
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -20,8 +22,9 @@ def getIngredients(request):
 
 
 @api_view(['POST'])
-def profile_follow(request, user_id):
-    author = get_object_or_404(User, id=user_id)
+def profile_follow(request):
+    author_id = json.loads(request.body)['id']
+    author = get_object_or_404(User, id=author_id)
     if author != request.user and not Follow.objects.filter(
             author=author,
             user=request.user).exists():

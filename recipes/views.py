@@ -37,7 +37,11 @@ def tag_recipe(request, slug):
 
 
 def follow_index(request):
-    post_list = Recipe.objects.filter(author__following__user=request.user)
+    follower = request.user.follower.all()
+    for follow in follower:
+        id_following = follow.author.id
+
+        recipe_list = Recipe.objects.filter(author__following__user=request.user)
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -135,7 +139,6 @@ def recipe_delete(request, username, recipe_id):
 def author_page(request, username):
     author = get_object_or_404(User, username=username)
     recipe_list = author.recipes.all()
-    id = author.id
     tags = Tag.objects.all()
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
@@ -148,7 +151,6 @@ def author_page(request, username):
         'author': author,
         'page': page,
         'tags': tags,
-        'id': id,
         'paginator': paginator,
         'following': following,
     })

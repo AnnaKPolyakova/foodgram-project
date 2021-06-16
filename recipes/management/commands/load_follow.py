@@ -2,7 +2,7 @@ import json
 
 from django.core.management import BaseCommand
 
-from users.models import Follow
+from recipes.models import Follow
 
 
 class Command(BaseCommand):

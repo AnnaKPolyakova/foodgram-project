@@ -96,13 +96,14 @@
             <div class="form__group">
                 <span class="form__label">Загрузить фото</span>
                 <div class="form__field-group">
-                    <input type="file" name="image" id="id_file"
-                           value="{{ form.image.url }} | default_if_none:'' }}">
-                    <span class="form__error"></span>
+                    {% if not recipe %}
+                        <input type="file" name="image" id="id_image">
+                    {% else %}
+                        {{ form.image}}
+                    {% endif %}
                 </div>
             </div>
             <div class="form__footer">
-              </button>
                 {% if not recipe %}
                     <button  type="submit"
                              class="button button_style_blue">Создать
