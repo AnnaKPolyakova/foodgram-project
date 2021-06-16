@@ -90,7 +90,7 @@ def recipe_edit(request, username, recipe_id):
         return redirect('recipe', username, recipe_id)
     recipe = get_object_or_404(Recipe, author__username=username, id=recipe_id)
 
-    form = RecipeForm(data=request.GET or None,
+    form = RecipeForm(data=request.POST or None,
                       files=request.FILES or None,
                       instance=recipe)
     ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
