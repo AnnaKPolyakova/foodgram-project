@@ -2,7 +2,7 @@ from django.contrib import admin
 from adminsortable2.admin import SortableInlineAdminMixin
 
 from recipes.models import Tag, Ingredient, Recipe, RecipeIngredientRelation, \
-    Follow
+    Follow, Favorite
 
 
 class RecipeIngredientLine(SortableInlineAdminMixin, admin.TabularInline):
@@ -42,8 +42,16 @@ class FollowAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'recipe',)
+    search_fields = ('user', 'recipe',)
+    empty_value_display = '-пусто-'
+
+
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(Tag, TegAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Favorite, FavoriteAdmin)
+
 

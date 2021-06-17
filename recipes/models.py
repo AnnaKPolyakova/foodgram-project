@@ -155,3 +155,23 @@ class Follow(models.Model):
 
     def __str__(self):
         return f'@Подписчик {self.user} @Автор {self.author}'
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name='favorite',
+        verbose_name="Пользователь",
+    )
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE,
+        related_name='favorite',
+        verbose_name="Рецепт",
+    )
+
+    class Meta:
+        verbose_name_plural = 'Избранные'
+        verbose_name = 'Избранное'
+
+    def __str__(self):
+        return f'@Пользователь {self.user} Рецепт {self.author}'

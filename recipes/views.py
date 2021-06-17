@@ -3,7 +3,8 @@ from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm, IngredientsForm
-from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, Follow
+from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
+    Follow, Favorite
 from users.models import User
 
 INGREDIENT = 'nameIngredient_'
@@ -52,13 +53,18 @@ def follow_index(request):
 
 
 def favorite_index(request):
-    post_list = Recipe.objects.filter(author__following__user=request.user)
-    paginator = Paginator(post_list, 10)
+    tags = Tag.objects.all()
+    favorites = get_list_or_404(Favorite, user=request.user)
+    recipes = []
+    for favorite in favorites:
+        recipes.append(favorite.recipe)
+    paginator = Paginator(recipes, 3)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'favorite.html', {
         'page': page,
         'paginator': paginator,
+        'tags': tags,
     })
 
 

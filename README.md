@@ -23,6 +23,7 @@ python manage.py load_recipes test_data/recipes.json --settings=config.settings.
 python manage.py load_rec_ing_rel test_data/rec_ing_rel.json --settings=config.settings.dev
 python manage.py load_rec_tag_rel test_data/rec_tag_rel.json --settings=config.settings.dev
 python manage.py load_follow test_data/follow.json --settings=config.settings.dev
+python manage.py load_favorite test_data/favorite.json --settings=config.settings.dev
 
 
 ```
