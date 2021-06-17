@@ -4,7 +4,17 @@
         {% for tag in tags %}
             <li class="tags__item">
                 <a id="breakfast"
-                   class="tags__checkbox tags__checkbox_style_{{ tag.color}} tags__checkbox_active" href="#"></a>
+                   class="tags__checkbox tags__checkbox_style_{{ tag.color}}
+                   {% if tag.slug == request_tag %}
+                       tags__checkbox_active
+                   {% else %}
+                       tags__checkbox
+                   {% endif %}"
+                   {% if request_tag is None %}
+                       href="{% url 'index' %}?page={{ page.number }}&tag={{ tag.slug }}"></a>
+                   {% else %}
+                       href="{% url 'index' %}?page={{ page.number }}&tag={{ tag.slug }},{{ request_tag }}"></a>
+                    {% endif %}"
                 <span class="tags__label">{{ tag.title }}</span>
             </li>
         {% endfor %}

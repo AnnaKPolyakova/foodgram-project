@@ -12,15 +12,20 @@ AMOUNT = 'valueIngredient_'
 
 
 def index(request):
-    recipe_list = Recipe.objects.all()
+    tag = request.GET.get('tag')
+    if tag is None:
+        recipe_list = Recipe.objects.all()
+    else:
+        recipe_list = Recipe.objects.all()
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
-    tags = Tag.objects.all()
+    tags_list = Tag.objects.all()
     page = paginator.get_page(page_number)
     return render(
         request,
         'index.html',
-        {'page': page, 'paginator': paginator, 'tags': tags}
+        {'page': page, 'paginator': paginator, 'tags': tags_list,
+         'request_tag': tag}
     )
 
 

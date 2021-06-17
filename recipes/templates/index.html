@@ -9,7 +9,7 @@
 {% endblock %}
 {% block content %}
 {% csrf_token %}
-    {% include 'tags.html' with tags=tags title="Рецепты" %}
+    {% include 'tags.html' with tags=tags request_tag=request_tag title="Рецепты" %}
     <div class="card-list">
         {% for recipes in page %}
             {% include 'recipe_card.html' with recipe=recipes %}
