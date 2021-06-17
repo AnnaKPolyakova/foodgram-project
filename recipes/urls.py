@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .api import profile_follow, profile_unfollow
+from .api import profile_follow, profile_unfollow, add_favorites
 
 from . import views
 from .api import getIngredients
@@ -13,7 +13,7 @@ urlpatterns = [
     path('subscriptions/',
          profile_follow,
          name='profile_follow'),
-    path('subscriptions/<int:follow_id>/',
+    path('subscriptions/<int:author_id>/',
          profile_unfollow,
          name='profile_unfollow'),
     path("follow/",
@@ -22,6 +22,12 @@ urlpatterns = [
     path("favorite/",
          views.favorite_index,
          name="favorite_index"),
+    path("favorites/",
+         add_favorites,
+         name="add_favorites"),
+    path("favorites/<int:resipe_id>/",
+         add_favorites,
+         name="add_favorites"),
     path('new_recipe/',
          views.new_recipe,
          name='new_recipe'),

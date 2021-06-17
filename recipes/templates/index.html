@@ -8,6 +8,7 @@
     {% include 'nav.html' with index=True %}
 {% endblock %}
 {% block content %}
+{% csrf_token %}
     {% include 'tags.html' with tags=tags title="Рецепты" %}
     <div class="card-list">
         {% for recipes in page %}

@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from users.models import User
 
 
-from recipes.models import Ingredient, Follow
+from recipes.models import Ingredient, Follow, Favorite, Recipe
 
 
 @api_view(['GET'])
@@ -42,3 +42,17 @@ def profile_unfollow(request, id):
                                user=request.user)
     follow.delete()
     return {}
+
+
+@api_view(['POST'])
+def add_favorites(request):
+    recipe_id = json.loads(request.body)['id']
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if recipe.user != request.user and not Favorite.objects.filter(
+            recipe=recipe,
+            user=request.user).exists():
+        follow = Favorite.objects.create(
+            user=request.user,
+            recipe=recipe_id,
+        )
+        return {'id': str(follow.id)}
