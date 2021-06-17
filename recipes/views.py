@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm, IngredientsForm
@@ -74,13 +74,23 @@ def new_recipe(request):
     for field, value in request.POST.items():
         if field.find(INGREDIENT, 0) != -1:
             field_split = field.split('_')
-            RecipeIngredientRelation.objects.create(
-                ingredient=get_object_or_404(Ingredient, title=value),
-                amount=request.POST[f'{AMOUNT}{field_split[1]}'],
-                recipe=recipe,
-                ingredient_order=ingredient_order,
-            )
-            ingredient_order += 1
+            ingredient = get_object_or_404(Ingredient, title=value)
+            if not RecipeIngredientRelation.objects.filter(
+                    ingredient=ingredient, recipe=recipe).exists():
+                RecipeIngredientRelation.objects.create(
+                    ingredient=ingredient,
+                    amount=request.POST[f'{AMOUNT}{field_split[1]}'],
+                    recipe=recipe,
+                    ingredient_order=ingredient_order,
+                )
+                ingredient_order += 1
+            else:
+                recipe_ingredient = get_object_or_404(
+                    RecipeIngredientRelation, recipe=recipe,
+                                               ingredient=ingredient)
+                recipe_ingredient.amount = recipe_ingredient.amount + int(
+                    request.POST[f'{AMOUNT}{field_split[1]}'])
+                recipe_ingredient.save()
     recipe.save()
     return redirect('index')
 
@@ -88,33 +98,48 @@ def new_recipe(request):
 def recipe_edit(request, username, recipe_id):
     if request.user.username != username:
         return redirect('recipe', username, recipe_id)
-    recipe = get_object_or_404(Recipe, author__username=username, id=recipe_id)
+    recipe_old = get_object_or_404(Recipe, author__username=username,
+                                 id=recipe_id)
 
     form = RecipeForm(data=request.POST or None,
                       files=request.FILES or None,
-                      instance=recipe)
-    ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
+                      instance=recipe_old)
+    ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe_old)
     if not form.is_valid():
         return render(
             request, 'new_recipe.html', {'form': form,
-                                         'recipe': recipe,
+                                         'recipe': recipe_old,
                                          'ingredients': ingredients}
         )
+    ingredients_old = get_list_or_404(RecipeIngredientRelation,
+                                      recipe=recipe_old)
+    for ingredient in ingredients_old:
+        ingredient.delete()
     form.instance.author = request.user
     recipe = form.save()
     ingredient_order = 0
     for field, value in request.POST.items():
         if field.find(INGREDIENT, 0) != -1:
             field_split = field.split('_')
-            RecipeIngredientRelation.objects.create(
-                ingredient=get_object_or_404(Ingredient, title=value),
-                amount=request.POST[f'{AMOUNT}{field_split[1]}'],
-                recipe=recipe,
-                ingredient_order=ingredient_order,
-            )
-            ingredient_order += 1
+            ingredient = get_object_or_404(Ingredient, title=value)
+            if not RecipeIngredientRelation.objects.filter(
+                    ingredient=ingredient, recipe=recipe_old).exists():
+                RecipeIngredientRelation.objects.create(
+                    ingredient=ingredient,
+                    amount=request.POST[f'{AMOUNT}{field_split[1]}'],
+                    recipe=recipe,
+                    ingredient_order=ingredient_order,
+                )
+                ingredient_order += 1
+            else:
+                recipe_ingredient = get_object_or_404(
+                    RecipeIngredientRelation, recipe=recipe_old,
+                                               ingredient=ingredient)
+                recipe_ingredient.amount = recipe_ingredient.amount + int(
+                    request.POST[f'{AMOUNT}{field_split[1]}'])
+                recipe_ingredient.save()
     recipe.save()
-    return redirect('index')
+    return redirect('recipe',username=username,recipe_id=recipe_id)
 
 
 def recipe_view(request, username, recipe_id):
