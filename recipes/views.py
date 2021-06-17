@@ -62,14 +62,7 @@ def favorite_index(request):
     })
 
 
-def new_recipe(request):
-    form = RecipeForm(request.POST or None, files=request.FILES or None)
-    if not form.is_valid():
-        return render(
-            request, 'new_recipe.html', {'form': form}
-        )
-    form.instance.author = request.user
-    recipe = form.save()
+def ingredients_save(request, recipe):
     ingredient_order = 0
     for field, value in request.POST.items():
         if field.find(INGREDIENT, 0) != -1:
@@ -86,11 +79,26 @@ def new_recipe(request):
                 ingredient_order += 1
             else:
                 recipe_ingredient = get_object_or_404(
-                    RecipeIngredientRelation, recipe=recipe,
-                                               ingredient=ingredient)
-                recipe_ingredient.amount = recipe_ingredient.amount + int(
-                    request.POST[f'{AMOUNT}{field_split[1]}'])
+                    RecipeIngredientRelation,
+                    recipe=recipe,
+                    ingredient=ingredient
+                )
+                recipe_ingredient.amount = (
+                        recipe_ingredient.amount +
+                        int(request.POST[f'{AMOUNT}{field_split[1]}'])
+                )
                 recipe_ingredient.save()
+
+
+def new_recipe(request):
+    form = RecipeForm(request.POST or None, files=request.FILES or None)
+    if not form.is_valid():
+        return render(
+            request, 'new_recipe.html', {'form': form}
+        )
+    form.instance.author = request.user
+    recipe = form.save()
+    ingredients_save(request, recipe)
     recipe.save()
     return redirect('index')
 
@@ -111,33 +119,10 @@ def recipe_edit(request, username, recipe_id):
                                          'recipe': recipe_old,
                                          'ingredients': ingredients}
         )
-    ingredients_old = get_list_or_404(RecipeIngredientRelation,
-                                      recipe=recipe_old)
-    for ingredient in ingredients_old:
-        ingredient.delete()
+    RecipeIngredientRelation.objects.filter(recipe=recipe_old).delete()
     form.instance.author = request.user
     recipe = form.save()
-    ingredient_order = 0
-    for field, value in request.POST.items():
-        if field.find(INGREDIENT, 0) != -1:
-            field_split = field.split('_')
-            ingredient = get_object_or_404(Ingredient, title=value)
-            if not RecipeIngredientRelation.objects.filter(
-                    ingredient=ingredient, recipe=recipe_old).exists():
-                RecipeIngredientRelation.objects.create(
-                    ingredient=ingredient,
-                    amount=request.POST[f'{AMOUNT}{field_split[1]}'],
-                    recipe=recipe,
-                    ingredient_order=ingredient_order,
-                )
-                ingredient_order += 1
-            else:
-                recipe_ingredient = get_object_or_404(
-                    RecipeIngredientRelation, recipe=recipe_old,
-                                               ingredient=ingredient)
-                recipe_ingredient.amount = recipe_ingredient.amount + int(
-                    request.POST[f'{AMOUNT}{field_split[1]}'])
-                recipe_ingredient.save()
+    ingredients_save(request, recipe_old)
     recipe.save()
     return redirect('recipe',username=username,recipe_id=recipe_id)
 
