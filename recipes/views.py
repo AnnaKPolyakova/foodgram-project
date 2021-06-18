@@ -8,25 +8,38 @@ from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
 from users.models import User
 
 INGREDIENT = 'nameIngredient_'
+TAG = 'tag_'
 AMOUNT = 'valueIngredient_'
 
 
+def get_tag(request):
+    tags = []
+    for parameter, value in request.GET.items():
+        if parameter.find(TAG, 0) != -1:
+            tags.append(value)
+    return tags
+
+
 def index(request):
-    tag = request.GET.get('tag')
-    if tag is None:
+    request_tag = get_tag(request)
+    tags = Tag.objects.all()
+    if request_tag is None:
         recipe_list = Recipe.objects.all()
     else:
-        tag = tag.split(',')
+
+        # for item in tag:
+        #     if item not in tags_list:
+        #         tag.remove(item)
         recipe_list = Recipe.objects.all()
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
-    tags_list = Tag.objects.all()
+
     page = paginator.get_page(page_number)
     return render(
         request,
         'index.html',
-        {'page': page, 'paginator': paginator, 'tags': tags_list,
-         'request_tag': tag}
+        {'page': page, 'paginator': paginator, 'tags': tags,
+         'request_tag': request_tag}
     )
 
 
