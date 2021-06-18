@@ -29,7 +29,6 @@ def index(request):
         recipe_list = get_list_or_404(Recipe, tag__in=request_tag)
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
-
     page = paginator.get_page(page_number)
     return render(
         request,

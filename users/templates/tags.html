@@ -13,8 +13,8 @@
                     {% if request_tag is None %}
                         href="{% url 'index' %}?page={{ page.number }}&tag_{{ forloop.counter }}={{ tag.id }}"></a>
                     {% else %}
-href="{% url 'index' %}?page={{ page.number }}{% for tag_add in request_tag %}{% if tag.id != tag_add %}&tag_{{ forloop.counter }}={{ tag_add }}{% endif %}{% endfor %}{% if tag.id not in request_tag %}&tag_{{ forloop.counter }}={{ tag.id }}{% endif %}"></a>
-                {% endif %}
+                        href="{% url 'index' %}?page={{ page.number }}{% for tag_add in request_tag %}{% if tag.id != tag_add %}&tag_{{ forloop.counter }}={{ tag_add }}{% endif %}{% endfor %}{% if tag.id not in request_tag %}&tag_{{ forloop.counter }}={{ tag.id }}{% endif %}"></a>
+                    {% endif %}
                 <span class="tags__label">{{ tag.title }}</span>
             </li>
         {% endfor %}

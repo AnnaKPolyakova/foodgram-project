@@ -15,7 +15,7 @@
             {% include 'recipe_card.html' with recipe=recipes %}
         {% endfor %}
     </div>
-        {% include 'paginator.html' with items=page paginator=paginator %}
+        {% include 'paginator.html' with items=page paginator=paginator request_tag=request_tag %}
 {% endblock %}
 {% block JS %}
   <script src="{% static 'js/components/MainCards.js' %}"></script>
