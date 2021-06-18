@@ -154,7 +154,7 @@ class Follow(models.Model):
         verbose_name = 'Подписка'
 
     def __str__(self):
-        return f'@Подписчик {self.user} @Автор {self.author}'
+        return f'Подписчик @{self.user} Автор @{self.author}'
 
 
 class Favorite(models.Model):
@@ -174,7 +174,7 @@ class Favorite(models.Model):
         verbose_name = 'Рецепт'
 
     def __str__(self):
-        return f'@Пользователь {self.user} Рецепт {self.recipe}'
+        return f'Пользователь @{self.user} Рецепт {self.recipe}'
 
 
 class Purchase(models.Model):
@@ -194,4 +194,4 @@ class Purchase(models.Model):
         verbose_name = 'Рецепт'
 
     def __str__(self):
-        return f'@Пользователь {self.user} Список покупок {self.recipe}'
+        return f'Пользователь @{self.user} Список покупок {self.recipe}'
