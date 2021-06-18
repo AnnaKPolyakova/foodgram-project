@@ -170,8 +170,8 @@ class Favorite(models.Model):
     )
 
     class Meta:
-        verbose_name_plural = 'Избранные'
-        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранное'
+        verbose_name = 'Рецепт'
 
     def __str__(self):
         return f'@Пользователь {self.user} Рецепт {self.recipe}'
