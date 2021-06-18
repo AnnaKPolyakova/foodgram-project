@@ -16,21 +16,17 @@ def get_tag(request):
     tags = []
     for parameter, value in request.GET.items():
         if parameter.find(TAG, 0) != -1:
-            tags.append(value)
+            tags.append(int(value))
     return tags
 
 
 def index(request):
     request_tag = get_tag(request)
     tags = Tag.objects.all()
-    if request_tag is None:
+    if len(request_tag) == 0:
         recipe_list = Recipe.objects.all()
     else:
-
-        # for item in tag:
-        #     if item not in tags_list:
-        #         tag.remove(item)
-        recipe_list = Recipe.objects.all()
+        recipe_list = get_list_or_404(Recipe, tag__in=request_tag)
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
 
