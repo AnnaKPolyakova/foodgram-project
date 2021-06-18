@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
-from recipes.forms import RecipeForm, IngredientsForm
+from recipes.forms import RecipeForm
 from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
     Follow, Favorite
 from users.models import User

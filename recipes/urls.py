@@ -10,6 +10,7 @@ urlpatterns = [
          views.index,
          name='index'
          ),
+    path('admin/', admin.site.urls),
     path('subscriptions/',
          profile_follow,
          name='profile_follow'),

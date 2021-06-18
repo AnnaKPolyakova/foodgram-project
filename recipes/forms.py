@@ -13,11 +13,3 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = ('title', 'time', 'description', 'tag',
                   'image',)
-
-
-class IngredientsForm (forms.ModelForm):
-
-    class Meta:
-
-        model = RecipeIngredientRelation
-        fields = ('ingredient', 'amount')

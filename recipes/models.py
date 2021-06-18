@@ -174,4 +174,24 @@ class Favorite(models.Model):
         verbose_name = 'Избранное'
 
     def __str__(self):
-        return f'@Пользователь {self.user} Рецепт {self.author}'
+        return f'@Пользователь {self.user} Рецепт {self.recipe}'
+
+
+class Purchase(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name='purchase',
+        verbose_name="Пользователь",
+    )
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE,
+        related_name='purchase',
+        verbose_name="Рецепт",
+    )
+
+    class Meta:
+        verbose_name_plural = 'Список покупок'
+        verbose_name = 'Рецепт'
+
+    def __str__(self):
+        return f'@Пользователь {self.user} Список покупок {self.recipe}'
