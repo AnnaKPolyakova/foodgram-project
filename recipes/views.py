@@ -16,6 +16,7 @@ def index(request):
     if tag is None:
         recipe_list = Recipe.objects.all()
     else:
+        tag = tag.split(',')
         recipe_list = Recipe.objects.all()
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
