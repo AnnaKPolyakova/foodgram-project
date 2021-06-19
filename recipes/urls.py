@@ -39,7 +39,7 @@ urlpatterns = [
          views.shop_list_delete,
          name='shop_list_delete'),
     path('shop_list/download/',
-         views.shop_list,
+         views.shop_list_download,
          name='shop_list_download'),
     path('tag/<slug:slug>/',
          views.tag_recipe,

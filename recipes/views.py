@@ -1,4 +1,6 @@
 from django.core.paginator import Paginator
+from django.db.models import Sum
+from django.http import HttpResponse
 from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -211,3 +213,18 @@ def shop_list_delete(request, recipe_id):
     )
     purchase.delete()
     return redirect('shop_list')
+
+
+def shop_list_download(request):
+    filename = "purchase.txt"
+    recipes = Recipe.objects.filter(purchase__user=request.user)
+    ingredients = RecipeIngredientRelation.objects.filter(
+        recipe__in=recipes
+    ).values('ingredient__title', 'ingredient__measure'
+             ).annotate(amount=Sum('amount'))
+    content = [f'{ingredient["ingredient__title"]} {ingredient["amount"]} {ingredient["ingredient__measure"]} \n' for ingredient in ingredients]
+    response = HttpResponse(content, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename={0}'.format(
+        filename)
+    return response
+
