@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from recipes.forms import RecipeForm
 from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
-    Follow, Favorite
+    Follow, Favorite, Purchase
 from users.models import User
 
 INGREDIENT = 'nameIngredient_'
@@ -189,8 +189,8 @@ def author_page(request, username):
 
 
 def shop_list(request):
-    post_list = Recipe.objects.all()
-    paginator = Paginator(post_list, 10)
+    purchase_list = request.user.purchase.all()
+    paginator = Paginator(purchase_list, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(
@@ -198,3 +198,16 @@ def shop_list(request):
         'shopList.html',
         {'page': page, 'paginator': paginator}
     )
+
+
+def shop_list_delete(request, recipe_id):
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id
+    )
+    purchase = get_object_or_404(
+        Purchase,
+        recipe=recipe,
+    )
+    purchase.delete()
+    return redirect('shop_list')
