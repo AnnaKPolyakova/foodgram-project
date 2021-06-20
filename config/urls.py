@@ -9,11 +9,18 @@ from django.conf.urls.static import static
 
 from django.conf import settings
 
+from recipes.views import page_not_found, server_error
+
+handler404 = "recipes.views.page_not_found"  # noqa
+handler500 = "recipes.views.server_error"  # noqa
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recipes.urls')),
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
+    path('404/', page_not_found, name='Error_404'),
+    path('500/', server_error, name='Error_500'),
 ]
 
 urlpatterns += [

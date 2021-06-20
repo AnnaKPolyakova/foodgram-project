@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
-from recipes.adithinal import get_recipes_ending, NUMBER_OR_RECIPES
+from recipes.utils import get_recipes_ending, NUMBER_OR_RECIPES
 from recipes.forms import RecipeForm
 from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
     Follow, Favorite, Purchase
@@ -234,3 +234,19 @@ def shop_list_download(request):
         filename)
     return response
 
+
+def page_not_found(request, exception):
+    return render(
+        request,
+        "misc/404.html",
+        {"path": request.path},
+        status=404
+    )
+
+
+def server_error(request):
+    return render(
+        request,
+        "misc/500.html",
+        status=500
+    )
