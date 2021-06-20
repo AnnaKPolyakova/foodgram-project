@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_list_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 
+from recipes.adithinal import get_recipes_ending, NUMBER_OR_RECIPES
 from recipes.forms import RecipeForm
 from recipes.models import Recipe, Tag, Ingredient, RecipeIngredientRelation, \
     Follow, Favorite, Purchase
@@ -12,6 +13,7 @@ from users.models import User
 INGREDIENT = 'nameIngredient_'
 TAG = 'tag_'
 AMOUNT = 'valueIngredient_'
+
 
 
 def get_tag(request):
@@ -57,8 +59,12 @@ def follow_index(request):
     follower = request.user.follower.all()
     follower_list = []
     for follow in follower:
-        follower_list.append({'author': follow.author,
-                              'recipes': follow.author.recipes.all()})
+        follower_list.append(
+            {'author': follow.author,
+             'recipes': follow.author.recipes.all()[:NUMBER_OR_RECIPES],
+             'count': follow.author.recipes.count() - NUMBER_OR_RECIPES,
+             'recipes_info': get_recipes_ending(follow.author.recipes.count())}
+        )
     paginator = Paginator(follower_list, 3)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
