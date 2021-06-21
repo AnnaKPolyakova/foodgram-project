@@ -9,7 +9,6 @@
 {% endblock %}
 {% block content %}
     {% include 'tags.html' with tags=tags title=author.get_full_name %}
-    {% csrf_token %}
     {% if author != request.user %}
         <div class="author-subscribe" data-author="{{ author.id }}">
             {% if following %}

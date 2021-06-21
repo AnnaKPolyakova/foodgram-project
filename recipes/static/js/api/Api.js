@@ -17,9 +17,10 @@ class Api {
       })
   }
   addPurchases (id) {
-    return fetch(`/purchases`, {
+    return fetch(`/purchases/`, {
       method: 'POST',
       headers: {
+        'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -37,6 +38,7 @@ class Api {
     return fetch(`/purchases/${id}`, {
       method: 'DELETE',
       headers: {
+        'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'
       }
     })

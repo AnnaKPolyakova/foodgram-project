@@ -1,19 +1,13 @@
-import json
-
-from requests import Response
 from rest_framework.decorators import api_view, permission_classes
 from django.http import JsonResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import filters, viewsets, mixins
-from django.shortcuts import get_object_or_404, redirect, render
+
+from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status
 from rest_framework.permissions import IsAuthenticated
 
-from api.serializers import FollowSerializer
 from users.models import User
-from rest_framework.views import APIView
 
-from recipes.models import Ingredient, Follow, Favorite, Recipe
+from recipes.models import Ingredient, Follow, Favorite, Recipe, Purchase
 
 RESPONSE = JsonResponse({'success': True}, status=status.HTTP_200_OK)
 BAD_RESPONSE = JsonResponse(
@@ -32,14 +26,6 @@ def getIngredients(request):
     )
     return JsonResponse(ingredient_list, safe=False)
 
-
-# class FollowView(APIView):
-#
-#     def get(self, request):
-#         author_id = request.data.get('id')
-#         author = get_object_or_404(User, id=author_id)
-#         Follow.objects.get_or_create(user_id=request.user.id, author=author)
-#         return Response({"follow": "ok"})
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -64,6 +50,32 @@ def profile_unfollow(request, author_id):
                                author__id=author_id,
                                user=request.user)
     follow.delete()
+    return RESPONSE
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_to_purchases(request):
+    recipe_id = request.data['id']
+    recipe = get_object_or_404(User, id=recipe_id)
+    if not Purchase.objects.filter(
+            recipe=recipe,
+            user=request.user).exists():
+        purchase = Purchase.objects.create(
+            user=request.user,
+            recipe=recipe,
+        )
+        return RESPONSE
+    return BAD_RESPONSE
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_from_purchases(request, recipe_id):
+    purchase = get_object_or_404(Purchase,
+                               recipe=recipe_id,
+                               user=request.user)
+    purchase.delete()
     return RESPONSE
 
 

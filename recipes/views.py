@@ -166,11 +166,17 @@ def recipe_edit(request, username, recipe_id):
 
 def recipe_view(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id, author__username=username)
+    purchase = Purchase.objects.filter(recipe=recipe,
+                                       user=request.user).exists()
+    following = Follow.objects.filter(author=recipe.author,
+                                      user=request.user).exists()
     ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
     return render(request, 'recipe.html', {
         'recipe': recipe,
         'author': recipe.author,
         'ingredients': ingredients,
+        'purchase': purchase,
+        'following': following,
     })
 
 
