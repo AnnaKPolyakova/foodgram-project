@@ -38,9 +38,9 @@
                 <ul class="single-card__items">
                     {% if user.is_authenticated %}
                         {% if purchase %}
-                            <li class="single-card__item"><button class="button button_style_blue" name="purchases" data-out></span> Удалить из покупок</button></li>
+                            <li class="single-card__item"><button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span> Рецепт добавлен</button></li>
                         {% else %}
-                            <li class="single-card__item"><button class="button button_style_blue" name="purchases" data-out><span class="icon-plus"></span> Добавить в покупки</button></li>
+                            <li class="single-card__item"><button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus"></span> Добавить в покупки</button></li>
                         {% endif %}
                     {% endif %}
                     {% if user.is_authenticated and user != author %}

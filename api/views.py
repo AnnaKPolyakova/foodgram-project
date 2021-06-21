@@ -57,10 +57,10 @@ def profile_unfollow(request, author_id):
 @permission_classes([IsAuthenticated])
 def add_to_purchases(request):
     recipe_id = request.data['id']
-    recipe = get_object_or_404(User, id=recipe_id)
+    recipe = get_object_or_404(Recipe, id=recipe_id)
     if not Purchase.objects.filter(
-            recipe=recipe,
-            user=request.user).exists():
+            recipe=recipe.id,
+            user=request.user.id).exists():
         purchase = Purchase.objects.create(
             user=request.user,
             recipe=recipe,
