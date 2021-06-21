@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with favorite=True url='favorite'%}
+    {% include 'nav.html' with favorite=True %}
 {% endblock %}
 {% block content %}
 {% csrf_token %}
