@@ -9,7 +9,7 @@
 {% endblock %}
 {% block content %}
     <main class="main container">
-        <div class="single-card" data-id="{{ recipe.id }}" data-author="12">
+        <div class="single-card" data-id="{{ recipe.id }}" data-author="{{ author.id }}">
             <img src="{{ recipe.image.url }}" alt="какой-то текст" class="single-card__image">
             <div class="single-card__info">
                 <div class="single-card__header-info">
@@ -36,7 +36,13 @@
                     </ul>
                 </div>
                 <ul class="single-card__items">
-                    <li class="single-card__item"><button class="button button_style_blue" name="purchases" data-out><span class="icon-plus"></span> Добавить в покупки</button></li>
+                    {% if user.is_authenticated %}
+                        {% if purchase %}
+                            <li class="single-card__item"><button class="button button_style_blue" name="purchases" data-out></span> Удалить из покупок</button></li>
+                        {% else %}
+                            <li class="single-card__item"><button class="button button_style_blue" name="purchases" data-out><span class="icon-plus"></span> Добавить в покупки</button></li>
+                        {% endif %}
+                    {% endif %}
                     {% if user.is_authenticated and user != author %}
                         {% if following %}
                             <li class="single-card__item"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" >Отписаться от автора</button>
