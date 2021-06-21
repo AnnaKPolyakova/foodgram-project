@@ -5,16 +5,18 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with index=True %}
+    {% include 'nav.html' %}
 {% endblock %}
 {% block content %}
     {% include 'tags.html' with tags=tags title=author.get_full_name %}
     {% csrf_token %}
     {% if author != request.user %}
         <div class="author-subscribe" data-author="{{ author.id }}">
-            <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" data-out>
-                {% if following%}Отписаться от автора{% else %}Подписаться на автора{% endif %}
-            </button></p>
+            {% if following %}
+                <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" >Отписаться от автора</button></p>
+            {% else %}
+                <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" data-out>Подписаться на автора</button></p>
+            {% endif %}
         </div>
     {% endif %}
     <div class="card-list">
