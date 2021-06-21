@@ -15,7 +15,6 @@ TAG = 'tag_'
 AMOUNT = 'valueIngredient_'
 
 
-
 def get_tag(request):
     tags = []
     for parameter, value in request.GET.items():
@@ -76,10 +75,19 @@ def follow_index(request):
 
 def favorite_index(request):
     tags = Tag.objects.all()
-    favorites = get_list_or_404(Favorite, user=request.user)
+    request_tag = get_tag(request)
+    if len(request_tag) != 0:
+        favorites = get_list_or_404(Favorite, recipe__tag__in=request_tag,
+                                    user=request.user)
+    else:
+        favorites = get_list_or_404(Favorite, user=request.user)
     recipes = []
     for favorite in favorites:
         recipes.append(favorite.recipe)
+    if len(tags) != 0:
+        for favorite in favorites:
+            if favorite.recipe.tag in request_tag:
+                recipes.append(favorite.recipe)
     paginator = Paginator(recipes, 3)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -87,6 +95,7 @@ def favorite_index(request):
         'page': page,
         'paginator': paginator,
         'tags': tags,
+        'request_tag': request_tag
     })
 
 
