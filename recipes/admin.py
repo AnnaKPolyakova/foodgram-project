@@ -1,11 +1,11 @@
-from django.contrib import admin
 from adminsortable2.admin import SortableInlineAdminMixin
+from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 
-from recipes.models import (Tag, Ingredient, Recipe,
-                            RecipeIngredientRelation, Follow, Favorite, Purchase)
+from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
+                            RecipeIngredientRelation, Tag)
 from users.models import User
 
 
@@ -77,5 +77,3 @@ admin.site.register(Recipe, RecipeAdmin)
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, CustomUserAdmin)
-
-

@@ -1,13 +1,11 @@
-from rest_framework.decorators import api_view, permission_classes
 from django.http import JsonResponse
-
 from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
+from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe
 from users.models import User
-
-from recipes.models import Ingredient, Follow, Favorite, Recipe, Purchase
 
 RESPONSE = JsonResponse({'success': True}, status=status.HTTP_200_OK)
 BAD_RESPONSE = JsonResponse(
@@ -72,9 +70,11 @@ def add_to_purchases(request):
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def delete_from_purchases(request, recipe_id):
-    purchase = get_object_or_404(Purchase,
-                               recipe=recipe_id,
-                               user=request.user)
+    purchase = get_object_or_404(
+        Purchase,
+        recipe=recipe_id,
+        user=request.user
+    )
     purchase.delete()
     return RESPONSE
 

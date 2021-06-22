@@ -1,12 +1,11 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView
-)
-from api.views import getIngredients, profile_follow, profile_unfollow, \
-    delete_from_purchases, add_to_purchases, delete_from_favorites, add_to_favorites
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
 
+from api.views import (add_to_favorites, add_to_purchases,
+                       delete_from_favorites, delete_from_purchases,
+                       getIngredients, profile_follow, profile_unfollow)
 
 urlpatterns = [
     # path('', include(router_v1.urls)),
@@ -31,5 +30,4 @@ urlpatterns = [
     path('favorites/',
          add_to_favorites,
          name='profile_follow'),
-
 ]

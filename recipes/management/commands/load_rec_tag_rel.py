@@ -17,4 +17,3 @@ class Command(BaseCommand):
                 recipe = Recipe.objects.get(id=item['recipe_id'])
                 recipe.tag.add(item['tag_id'])
                 recipe.save()
-
