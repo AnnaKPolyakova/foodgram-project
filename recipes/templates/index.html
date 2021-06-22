@@ -10,8 +10,8 @@
 {% block content %}
     {% include 'tags.html' with tags=tags request_tag=request_tag title="Рецепты" %}
     <div class="card-list">
-        {% for recipes in page %}
-            {% include 'recipe_card.html' with recipe=recipes %}
+        {% for recipe in page %}
+            {% include 'recipe_card.html' with recipe=recipe %}
         {% endfor %}
     </div>
         {% include 'paginator.html' with items=page paginator=paginator request_tag=request_tag %}

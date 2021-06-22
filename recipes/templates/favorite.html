@@ -11,8 +11,8 @@
 {% csrf_token %}
     {% include 'tags.html' with tags=tags title="Избранное" %}
     <div class="card-list">
-        {% for recipes in page %}
-            {% include 'recipe_card.html' with recipe=recipes %}
+        {% for recipe in page %}
+            {% include 'recipe_card.html' with recipe=recipe %}
         {% endfor %}
     </div>
     {% include 'paginator.html' with items=page paginator=paginator %}

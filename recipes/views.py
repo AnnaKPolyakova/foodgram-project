@@ -27,17 +27,27 @@ def index(request):
     request_tag = get_tag(request)
     tags = Tag.objects.all()
     if len(request_tag) == 0:
-        recipe_list = Recipe.objects.all()
+        recipes = Recipe.objects.all()
     else:
-        recipe_list = get_list_or_404(Recipe, tag__in=request_tag)
+        recipes = get_list_or_404(Recipe, tag__in=request_tag)
+    recipe_list = []
+    for recipe in recipes:
+        recipe_list.append(
+            {'recipe': recipe,
+             'purchase': Purchase.objects.filter(recipe=recipe,user=request.user).exists(),
+             'favorite': Favorite.objects.filter(
+                 recipe=recipe,
+                 user=request.user).exists()})
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(
         request,
         'index.html',
-        {'page': page, 'paginator': paginator, 'tags': tags,
-         'request_tag': request_tag}
+        {'page': page,
+         'paginator': paginator,
+         'tags': tags,
+         'request_tag': request_tag,}
     )
 
 
@@ -83,7 +93,12 @@ def favorite_index(request):
         favorites = get_list_or_404(Favorite, user=request.user)
     recipes = []
     for favorite in favorites:
-        recipes.append(favorite.recipe)
+        recipes.append(
+            {'recipe': favorite.recipe,
+             'purchase': Purchase.objects.filter(recipe=favorite.recipe,user=request.user).exists(),
+             'favorite': Favorite.objects.filter(
+                 recipe=favorite.recipe,
+                 user=request.user).exists()})
     if len(tags) != 0:
         for favorite in favorites:
             if favorite.recipe.tag in request_tag:
