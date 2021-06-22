@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'rest_framework',
     'django_filters',
     'drf_spectacular',
@@ -93,6 +95,7 @@ DATABASES = {
     }
 }
 
+SITE_ID = 3
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -153,9 +156,6 @@ REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticatedOrReadOnly',
         ],
-        # 'DEFAULT_AUTHENTICATION_CLASSES': [
-        #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # ],
         'DEFAULT_FILTER_BACKENDS': [
             'django_filters.rest_framework.DjangoFilterBackend'],
     }
