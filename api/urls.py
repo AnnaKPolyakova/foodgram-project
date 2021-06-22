@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 from api.views import getIngredients, profile_follow, profile_unfollow, \
-    delete_from_purchases, add_to_purchases
+    delete_from_purchases, add_to_purchases, delete_from_favorites, add_to_favorites
 
 
 urlpatterns = [
@@ -25,11 +25,11 @@ urlpatterns = [
     path('purchases/<int:recipe_id>/',
          delete_from_purchases,
          name='delete_from_purchases'),
-    # path("favorites/<int:resipe_id>/",
-    #      add_favorites,
-    #      name="add_favorites"),
-    # path('subscriptions/',
-    #      add_favorites,
-    #      name='profile_follow'),
+    path("favorites/<int:recipe_id>/",
+         delete_from_favorites,
+         name="add_favorites"),
+    path('favorites/',
+         add_to_favorites,
+         name='profile_follow'),
 
 ]

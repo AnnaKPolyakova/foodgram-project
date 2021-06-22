@@ -79,15 +79,26 @@ def delete_from_purchases(request, recipe_id):
     return RESPONSE
 
 
-# @api_view(['POST'])
-# def add_favorites(request):
-#     recipe_id = json.loads(request.body)['id']
-#     recipe = get_object_or_404(Recipe, id=recipe_id)
-#     if recipe.user != request.user and not Favorite.objects.filter(
-#             recipe=recipe,
-#             user=request.user).exists():
-#         follow = Favorite.objects.create(
-#             user=request.user,
-#             recipe=recipe_id,
-#         )
-#         return {'id': str(follow.id)}
+@api_view(['POST'])
+def add_to_favorites(request):
+    recipe_id = request.data['id']
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if not Favorite.objects.filter(
+            recipe=recipe,
+            user=request.user).exists():
+        favorite = Favorite.objects.create(
+            user=request.user,
+            recipe=recipe,
+        )
+        return RESPONSE
+    return BAD_RESPONSE
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_from_favorites(request, recipe_id):
+    favorite = get_object_or_404(
+        Favorite, recipe__id=recipe_id,
+        user=request.user)
+    favorite.delete()
+    return RESPONSE
