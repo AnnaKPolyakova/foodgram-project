@@ -34,8 +34,11 @@ def index(request):
     for recipe in recipes:
         recipe_list.append(
             {'recipe': recipe,
-             'purchase': Purchase.objects.filter(recipe=recipe,user=request.user).exists(),
-             'favorite': Favorite.objects.filter(
+             'purchase': request.user.is_authenticated
+             and Purchase.objects.filter(
+                 recipe=recipe, user=request.user).exists(),
+             'favorite': request.user.is_authenticated
+             and Favorite.objects.filter(
                  recipe=recipe,
                  user=request.user).exists()})
     paginator = Paginator(recipe_list, 9)
@@ -181,17 +184,15 @@ def recipe_edit(request, username, recipe_id):
 
 def recipe_view(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id, author__username=username)
-    purchase = Purchase.objects.filter(recipe=recipe,
-                                       user=request.user).exists()
-    following = Follow.objects.filter(author=recipe.author,
-                                      user=request.user).exists()
     ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
     return render(request, 'recipe.html', {
         'recipe': recipe,
         'author': recipe.author,
         'ingredients': ingredients,
-        'purchase': purchase,
-        'following': following,
+        'purchase': request.user.is_authenticated and Purchase.objects.filter(
+            recipe=recipe, user=request.user).exists(),
+        'following': request.user.is_authenticated and Follow.objects.filter(
+            author=recipe.author, user=request.user).exists(),
     })
 
 
@@ -214,10 +215,12 @@ def author_page(request, username):
     for recipe in recipes:
         recipe_list.append(
             {'recipe': recipe,
-             'purchase': Purchase.objects.filter(recipe=recipe,user=request.user).exists(),
-             'favorite': Favorite.objects.filter(
-                 recipe=recipe,
-                 user=request.user).exists()})
+             'purchase': request.user.is_authenticated and
+                         Purchase.objects.filter(recipe=recipe,user=request.user).exists(),
+             'favorite': request.user.is_authenticated and
+                         Favorite.objects.filter(
+                             recipe=recipe,
+                             user=request.user).exists()})
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)

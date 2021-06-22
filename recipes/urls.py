@@ -28,7 +28,10 @@ urlpatterns = [
     path('tag/<slug:slug>/',
          views.tag_recipe,
          name='tag_recipe'),
-    path('<str:username>/',    path('<str:username>/<int:recipe_id>/edit/',
+    path('<str:username>/',
+         views.author_page,
+         name='author_page'),
+    path('<str:username>/<int:recipe_id>/edit/',
          views.recipe_edit,
          name='recipe_edit'),
     path('<str:username>/<int:recipe_id>/',
@@ -37,7 +40,4 @@ urlpatterns = [
     path('<str:username>/<int:recipe_id>/delete/',
          views.recipe_delete,
          name='recipe_delete'),
-         views.author_page,
-         name='author_page'),
-
 ]
