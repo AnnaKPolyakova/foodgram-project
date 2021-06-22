@@ -50,7 +50,7 @@ def index(request):
         {'page': page,
          'paginator': paginator,
          'tags': tags,
-         'request_tag': request_tag,}
+         'request_tag': request_tag}
     )
 
 
@@ -208,8 +208,12 @@ def recipe_delete(request, username, recipe_id):
 
 
 def author_page(request, username):
+    request_tag = get_tag(request)
     author = get_object_or_404(User, username=username)
-    recipes = author.recipes.all()
+    if len(request_tag) == 0:
+        recipes = author.recipes.all()
+    else:
+        recipes = get_list_or_404(Recipe, tag__in=request_tag, author=author)
     tags = Tag.objects.all()
     recipe_list = []
     for recipe in recipes:
@@ -234,6 +238,7 @@ def author_page(request, username):
         'tags': tags,
         'paginator': paginator,
         'following': following,
+        'request_tag': request_tag,
     })
 
 

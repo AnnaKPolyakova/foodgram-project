@@ -9,7 +9,7 @@
 {% endblock %}
 {% block content %}
     {% include 'tags.html' with tags=tags title=author.get_full_name %}
-    {% if author != request.user %}
+    {% if user.is_authenticated and author != request.user %}
         <div class="author-subscribe" data-author="{{ author.id }}">
             {% if following %}
                 <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" >Отписаться от автора</button></p>
@@ -20,7 +20,7 @@
     {% endif %}
     <div class="card-list">
         {% for recipe in page %}
-            {% include 'recipe_card.html' with recipe=recipe %}
+            {% include 'recipe_card.html' with recipe=recipe request_tag=request_tag%}
         {% endfor %}
     </div>
         {% include 'paginator.html' with items=page paginator=paginator %}
