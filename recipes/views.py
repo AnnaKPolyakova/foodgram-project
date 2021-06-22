@@ -208,8 +208,16 @@ def recipe_delete(request, username, recipe_id):
 
 def author_page(request, username):
     author = get_object_or_404(User, username=username)
-    recipe_list = author.recipes.all()
+    recipes = author.recipes.all()
     tags = Tag.objects.all()
+    recipe_list = []
+    for recipe in recipes:
+        recipe_list.append(
+            {'recipe': recipe,
+             'purchase': Purchase.objects.filter(recipe=recipe,user=request.user).exists(),
+             'favorite': Favorite.objects.filter(
+                 recipe=recipe,
+                 user=request.user).exists()})
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
