@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "include/base.html" %}
 {% block title %} Мои подписки {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/myFollow.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with follow=True %}
+    {% include 'include/nav.html' with follow=True %}
 {% endblock %}
 {% block content %}
 {% csrf_token %}
@@ -48,7 +48,7 @@
     </div>
         {% endfor %}
     </div>
-    {% include 'paginator.html' with items=page paginator=paginator %}
+    {% include 'include/paginator.html' with items=page paginator=paginator %}
 {% endblock %}
 {% block JS %}
   <script src="{% static 'js/config/config.js' %}"></script>

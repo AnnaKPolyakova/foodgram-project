@@ -1,14 +1,14 @@
-{% extends "base.html" %}
+{% extends "include/base.html" %}
 {% block title %} Рецепты {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' %}
+    {% include 'include/nav.html' %}
 {% endblock %}
 {% block content %}
-    {% include 'tags.html' with tags=tags title=author.get_full_name %}
+    {% include 'include/tags.html' with tags=tags title=author.get_full_name %}
     {% if user.is_authenticated and author != request.user %}
         <div class="author-subscribe" data-author="{{ author.id }}">
             {% if following %}
@@ -20,10 +20,10 @@
     {% endif %}
     <div class="card-list">
         {% for recipe in page %}
-            {% include 'recipe_card.html' with recipe=recipe request_tag=request_tag%}
+            {% include 'include/recipe_card.html' with recipe=recipe request_tag=request_tag%}
         {% endfor %}
     </div>
-        {% include 'paginator.html' with items=page paginator=paginator %}
+        {% include 'include/paginator.html' with items=page paginator=paginator %}
 {% endblock %}
 {% block JS %}
   <script src="{% static 'js/components/Subscribe.js' %}"></script>

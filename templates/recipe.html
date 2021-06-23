@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "include/base.html" %}
 {% block title %} Рецепты {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/single.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with index=True %}
+    {% include 'include/nav.html' with index=True %}
 {% endblock %}
 {% block content %}
     <main class="main container">
@@ -16,8 +16,17 @@
                     <h1 class="single-card__title">{{ recipe.title }}</h1>
                     {% if user.is_authenticated and user != author %}
                         <div class="single-card__favorite">
-                            <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite icon-favorite_big"></span></button>
-                            <div class="single-card__favorite-tooltip tooltip">Добавить в избранное</div>
+                            {% if user.is_authenticated %}
+                                {% if favorite %}
+                                    <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+                                    <div class="single-card__favorite-tooltip tooltip">Удалить из избранного</div>
+                                {% else %}
+                                    <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
+                                    <div class="single-card__favorite-tooltip tooltip">Добавить в избранное</div>
+                                {% endif %}
+                            {% endif %}
+
+
                         </div>
                     {% endif %}
                 </div>

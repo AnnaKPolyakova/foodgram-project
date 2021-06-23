@@ -1,20 +1,20 @@
-{% extends "base.html" %}
+{% extends "include/base.html" %}
 {% block title %} Рецепты {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with index=True %}
+    {% include 'include/nav.html' with index=True %}
 {% endblock %}
 {% block content %}
-    {% include 'tags.html' with tags=tags request_tag=request_tag title="Рецепты" %}
+    {% include 'include/tags.html' with tags=tags request_tag=request_tag title="Рецепты" %}
     <div class="card-list">
         {% for recipe in page %}
-            {% include 'recipe_card.html' with recipe=recipe %}
+            {% include 'include/recipe_card.html' with recipe=recipe %}
         {% endfor %}
     </div>
-        {% include 'paginator.html' with items=page paginator=paginator request_tag=request_tag %}
+        {% include 'include/paginator.html' with items=page paginator=paginator request_tag=request_tag %}
 {% endblock %}
 {% block JS %}
   <script src="{% static 'js/components/MainCards.js' %}"></script>

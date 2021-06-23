@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "include/base.html" %}
 {% block title %} Выход из системы {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/form.css' %}">
 {% endblock %}
 {% block nav %}
-    {% include 'nav.html' with logout=True %}
+    {% include 'include/nav.html' with logout=True %}
 {% endblock %}
 {% block content %}
     <div class="main__header">

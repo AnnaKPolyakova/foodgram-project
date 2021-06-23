@@ -217,7 +217,10 @@ def recipe_edit(request, username, recipe_id):
 
 
 def recipe_view(request, username, recipe_id):
-    recipe = get_object_or_404(Recipe, id=recipe_id, author__username=username)
+    recipe = get_object_or_404(
+        Recipe,
+        id=recipe_id, author__username=username
+    )
     ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe)
     return render(request, 'recipe.html', {
         'recipe': recipe,
@@ -228,6 +231,9 @@ def recipe_view(request, username, recipe_id):
         ).exists(),
         'following': request.user.is_authenticated and Follow.objects.filter(
             author=recipe.author, user=request.user
+        ).exists(),
+        'favorite': request.user.is_authenticated and Favorite.objects.filter(
+            recipe=recipe, user=request.user
         ).exists(),
     })
 
