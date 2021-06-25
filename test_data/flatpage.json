@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "url": "/about-author/",
+    "title": "Об авторе",
+    "content": "<p class=‘lead’>Меня вдохновляет возможность научиться чему-то новому. </p>\n <p><a href=https://hh.ru/resume/283f47c1ff002f1b180039ed1f736563726574>Резюме</a></p>\n <p><a href=https://github.com/AnnaKPolyakova/>Github-профайл</a></p>\n </body>",
+    "sites": 2
+  },
+  {
+    "id": 2,
+    "url": "/about-spec/",
+    "title": "Технологии",
+    "content": "<p class=‘lead’>Для создания данного сайта использовался django.</p>\n<p class=‘lead’>Неоценимую помощь и безграничный вклад внес мой  дорогой (уже теперь) друг, фото ниже.</p>\n<img src=\"/static/Stack Overflow.jpeg\" alt=\"My image\">",
+    "sites": 2
+  }
+]

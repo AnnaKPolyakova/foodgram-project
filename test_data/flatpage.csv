@@ -1,0 +1,3 @@
+id,url,title,content,sites,
+1,/about-author/,Об авторе,<p class=‘lead’>Меня вдохновляет возможность научиться чему-то новому. </p><p><a href=https://hh.ru/resume/283f47c1ff002f1b180039ed1f736563726574>Резюме</a></p><p><a href=https://github.com/AnnaKPolyakova/>Github-профайл</a></p></body>,2
+2,/about-spec/,Технологии,<p class=‘lead’>Для создания данного сайта использовался django.</p><p class=‘lead’>Неоценимую помощь и безграничный вклад внес мой   дорогой (уже теперь) друг, фото ниже.</p><img src="/static/Stack Overflow.jpeg" alt="My image">,2
