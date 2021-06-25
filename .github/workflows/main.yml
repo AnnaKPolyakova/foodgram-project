@@ -32,8 +32,7 @@ jobs:
       run: |
         # запуск проверки проекта по flake8
         pycodestyle api
-        pycodestyle recipes
         pycodestyle users
-
+        pycodestyle recipes
 #        # запустить написанные разработчиком тесты
 #        pytest
