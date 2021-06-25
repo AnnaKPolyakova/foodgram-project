@@ -41,9 +41,9 @@ class Tag(models.Model):
 
 class Ingredient(models.Model):
     title = models.CharField(
-        max_length=40,
+        max_length=100,
         verbose_name='Название',
-        help_text='Не более 40 символов',
+        help_text='Не более 100 символов',
     )
     measure = models.CharField(
         max_length=40,
