@@ -13,6 +13,7 @@ DATABASES = {
     }
 }
 
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
