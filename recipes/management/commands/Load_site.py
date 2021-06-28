@@ -19,11 +19,3 @@ class Command(BaseCommand):
             name='127.0.0.1:8000',
             domain='127.0.0.1:8000'
         )
-        with open(path[0]) as file:
-            for item in json.load(file):
-                flatpage = FlatPage.objects.get_or_create(
-                    id=item['id'],
-                    url=item['url'],
-                    title=item['title'],
-                    content=item['content'],
-                )
