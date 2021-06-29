@@ -4,8 +4,15 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 
-from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
-                            RecipeIngredientRelation, Tag)
+from recipes.models import (
+    Favorite,
+    Follow,
+    Ingredient,
+    Purchase,
+    Recipe,
+    RecipeIngredientRelation,
+    Tag,
+)
 from users.models import User
 
 
@@ -15,7 +22,7 @@ class PurchaseInline(admin.TabularInline):
 
 class FollowInline(admin.TabularInline):
     model = Follow
-    fk_name = 'user'
+    fk_name = "user"
 
 
 class FavoriteInline(admin.TabularInline):
@@ -26,49 +33,75 @@ class CustomUserAdmin(UserAdmin):
     inlines = [
         FavoriteInline,
         FollowInline,
-
         PurchaseInline,
     ]
 
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
-        (_('Permissions'), {
-            'fields': ('is_active', 'is_superuser', 'is_staff'),
-        }),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (None, {"fields": ("username", "password")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name")}),
+        (
+            _("Permissions"),
+            {
+                "fields": ("is_active", "is_superuser", "is_staff"),
+            },
+        ),
+        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
 
 
 class RecipeIngredientLine(SortableInlineAdminMixin, admin.TabularInline):
     model = RecipeIngredientRelation
-    verbose_name_plural = 'Доп. информация'
+    verbose_name_plural = "Доп. информация"
 
 
 class TegAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug',)
-    search_fields = ('title', 'slug',)
-    empty_value_display = '-пусто-'
+    list_display = (
+        "title",
+        "slug",
+    )
+    search_fields = (
+        "title",
+        "slug",
+    )
+    empty_value_display = "-пусто-"
 
 
 class MeasureAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-    search_fields = ('title',)
-    empty_value_display = '-пусто-'
+    list_display = ("title",)
+    search_fields = ("title",)
+    empty_value_display = "-пусто-"
 
 
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ('title', 'measure',)
-    search_fields = ('title', 'measure',)
-    empty_value_display = '-пусто-'
+    list_display = (
+        "title",
+        "measure",
+    )
+    search_fields = (
+        "title",
+        "measure",
+    )
+    empty_value_display = "-пусто-"
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    filter_horizontal = ('tag',)
+    filter_horizontal = ("tag",)
     inlines = (RecipeIngredientLine,)
-    list_display = ('title', 'author', 'time', 'pub_date',)
-    search_fields = ('title', 'author', 'tag', 'time', 'slug', 'pub_date',)
-    empty_value_display = '-пусто-'
+    list_display = (
+        "title",
+        "author",
+        "time",
+        "pub_date",
+    )
+    search_fields = (
+        "title",
+        "author",
+        "tag",
+        "time",
+        "slug",
+        "pub_date",
+    )
+    empty_value_display = "-пусто-"
 
 
 admin.site.register(Tag, TegAdmin)

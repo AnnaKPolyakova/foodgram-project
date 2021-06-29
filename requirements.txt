@@ -24,3 +24,5 @@ django-admin-sortable2==1.0
 
 gunicorn==20.0.4
 flake8==3.9.2
+toml==0.10.2
+black==21.6b0
