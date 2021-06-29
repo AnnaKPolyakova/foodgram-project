@@ -79,13 +79,13 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through="RecipeIngredientRelation",
-        related_name="recipes",  #recipes
+        related_name="recipes",
         verbose_name="Ингредиенты",
         help_text="Добавьте ингредиенты.",
     )
-    tag = models.ManyToManyField(
+    tags = models.ManyToManyField(
         Tag,
-        related_name="teg",
+        related_name="recipes",  #recipes
         verbose_name="Теги",
         help_text="Добавьте тег (один или несколько).",
     )
@@ -148,6 +148,11 @@ class Follow(models.Model):
     class Meta:
         verbose_name_plural = "Подписки"
         verbose_name = "Подписка"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['author', 'user'],
+                name='unique follow')
+        ]
 
     def __str__(self):
         return f"Подписчик @{self.user} Автор @{self.author}"
@@ -170,6 +175,11 @@ class Favorite(models.Model):
     class Meta:
         verbose_name_plural = "Избранное"
         verbose_name = "Рецепт"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='unique favorite')
+        ]
 
     def __str__(self):
         return f"Пользователь @{self.user} Рецепт {self.recipe}"
@@ -192,6 +202,11 @@ class Purchase(models.Model):
     class Meta:
         verbose_name_plural = "Список покупок"
         verbose_name = "Рецепт"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='unique purchase')
+        ]
 
     def __str__(self):
         return f"Пользователь @{self.user} Список покупок {self.recipe}"

@@ -85,7 +85,7 @@ class IngredientAdmin(admin.ModelAdmin):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    filter_horizontal = ("tag",)
+    filter_horizontal = ("tags",)
     inlines = (RecipeIngredientLine,)
     list_display = (
         "title",

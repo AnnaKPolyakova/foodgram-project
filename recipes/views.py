@@ -67,7 +67,7 @@ def index(request):
     if len(request_tag) == 0:
         recipes = Recipe.objects.all()
     else:
-        recipes = get_list_or_404(Recipe, tag__in=request_tag)
+        recipes = get_list_or_404(Recipe, tags__in=request_tag)
     recipe_list = get_recipe_list(request, recipes)
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get("page")
@@ -140,7 +140,7 @@ def favorite_index(request):
     recipes = get_recipe_list(request, favorites, favorite=True)
     if len(tags) != 0:
         for favorite in favorites:
-            if favorite.recipe.tag in request_tag:
+            if favorite.recipe.tags in request_tag:
                 recipes.append(favorite.recipe)
     paginator = Paginator(recipes, 3)
     page_number = request.GET.get("page")
