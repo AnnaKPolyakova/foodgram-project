@@ -5,7 +5,7 @@ from .models import Recipe, Tag
 
 class RecipeForm(forms.ModelForm):
 
-    tag = forms.ModelMultipleChoiceField(
+    tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(), to_field_name="slug"
     )
 

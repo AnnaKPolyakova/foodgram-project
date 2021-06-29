@@ -34,10 +34,10 @@
                 <p class="form__label">Теги</p>
                 <div class="form__field-group">
                     <div class="tags">
-                        {% for tag in form.tag.field.choices.queryset.all %}
+                        {% for tag in form.tags.field.choices.queryset.all %}
                         <div class="tags__item">
                             <input type="checkbox"
-                                   name="tag"
+                                   name="tags"
                                    value="{{ tag.slug }}"
                                    id="{{ tag.id }}"
                                    {% if tag in form.instance.tag.all %}
