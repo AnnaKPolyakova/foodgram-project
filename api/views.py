@@ -1,12 +1,14 @@
-import json
-
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from api.serializers import FollowSerializer
+from api.serializers import (
+    FollowSerializer,
+    PurchasesSerializer,
+    FavoriteSerializer
+)
 from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe
 from users.models import User
 
@@ -31,17 +33,15 @@ def getIngredients(request):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def profile_follow(request):
-    serializer = FollowSerializer(
-        data={
-            'author': request.data["id"],
-            'user': request.user
-        })
+    serializer = FollowSerializer(data=request.data)
     if serializer.is_valid():
-        Follow.objects.get_or_create(
-                user=request.user,
-                author=get_object_or_404(User, id=request.data["id"]),
-            )
-        return RESPONSE
+        author = get_object_or_404(User, id=request.data["id"])
+        if author != request.user:
+            Follow.objects.get_or_create(
+                    user=request.user,
+                    author=get_object_or_404(User, id=request.data["id"]),
+                )
+            return RESPONSE
     return BAD_RESPONSE
 
 
@@ -56,15 +56,12 @@ def profile_unfollow(request, author_id):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def add_to_purchases(request):
-    recipe_id = request.data["id"]
-    recipe = get_object_or_404(Recipe, id=recipe_id)
-    if not Purchase.objects.filter(
-        recipe=recipe.id, user=request.user.id
-    ).exists():
-        purchase = Purchase.objects.create(
-            user=request.user,
-            recipe=recipe,
-        )
+    serializer = FollowSerializer(data=request.data)
+    if serializer.is_valid():
+        Purchase.objects.get_or_create(
+                user=request.user,
+                recipe=get_object_or_404(Recipe, id=request.data["id"]),
+            )
         return RESPONSE
     return BAD_RESPONSE
 
@@ -79,12 +76,11 @@ def delete_from_purchases(request, recipe_id):
 
 @api_view(["POST"])
 def add_to_favorites(request):
-    recipe_id = request.data["id"]
-    recipe = get_object_or_404(Recipe, id=recipe_id)
-    if not Favorite.objects.filter(recipe=recipe, user=request.user).exists():
-        favorite = Favorite.objects.create(
+    serializer = FavoriteSerializer(data=request.data)
+    if serializer.is_valid():
+        Favorite.objects.get_or_create(
             user=request.user,
-            recipe=recipe,
+            recipe=get_object_or_404(Recipe, id=request.data["id"]),
         )
         return RESPONSE
     return BAD_RESPONSE

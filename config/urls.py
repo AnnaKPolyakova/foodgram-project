@@ -6,10 +6,9 @@ from django.urls import include, path
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
                                    SpectacularSwaggerView)
 
-from recipes.views import page_not_found, server_error
 
-handler404 = "recipes.views.page_not_found"
-handler500 = "recipes.views.server_error"
+handler404 = "config.views.page_not_found"
+handler500 = "config.views.server_error"
 
 urlpatterns = [
     path(
@@ -32,9 +31,6 @@ urlpatterns = [
     path('', include('recipes.urls')),
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    path('404/', page_not_found, name='Error_404'),
-    path('500/', server_error, name='Error_500'),
-
 ]
 
 urlpatterns += [
