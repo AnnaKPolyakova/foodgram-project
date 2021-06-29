@@ -20,7 +20,6 @@ class FollowSerializer(serializers.ModelSerializer):
         model = Follow
         fields = ['author', 'user']
 
-
     def validate(self, data):
 
         if data['user'] == data['author']:

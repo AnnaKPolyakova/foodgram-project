@@ -37,11 +37,9 @@ def profile_follow(request):
             'user': request.user
         })
     if serializer.is_valid():
-        author = get_object_or_404(User, id=request.data["id"])
-        if author != request.user:
-            Follow.objects.get_or_create(
+        Follow.objects.get_or_create(
                 user=request.user,
-                author=author,
+                author=get_object_or_404(User, id=request.data["id"]),
             )
         return RESPONSE
     return BAD_RESPONSE
