@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
+from api.serializers import FollowSerializer
 from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe
 from users.models import User
 
@@ -30,13 +31,8 @@ def getIngredients(request):
 def profile_follow(request):
     author_id = request.data["id"]
     author = get_object_or_404(User, id=author_id)
-    if (
-        author != request.user
-        and not Follow.objects.filter(
-            author=author, user=request.user
-        ).exists()
-    ):
-        follow = Follow.objects.create(
+    if author != request.user:
+        Follow.objects.get_or_create(
             user=request.user,
             author=author,
         )
