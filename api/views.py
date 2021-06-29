@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import status
@@ -29,13 +31,18 @@ def getIngredients(request):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def profile_follow(request):
-    author_id = request.data["id"]
-    author = get_object_or_404(User, id=author_id)
-    if author != request.user:
-        Follow.objects.get_or_create(
-            user=request.user,
-            author=author,
-        )
+    serializer = FollowSerializer(
+        data={
+            'author': request.data["id"],
+            'user': request.user
+        })
+    if serializer.is_valid():
+        author = get_object_or_404(User, id=request.data["id"])
+        if author != request.user:
+            Follow.objects.get_or_create(
+                user=request.user,
+                author=author,
+            )
         return RESPONSE
     return BAD_RESPONSE
 
