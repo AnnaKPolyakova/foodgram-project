@@ -54,7 +54,7 @@ class RecipeIngredientLine(SortableInlineAdminMixin, admin.TabularInline):
     verbose_name_plural = "Доп. информация"
 
 
-class TegAdmin(admin.ModelAdmin):
+class TagAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "slug",
@@ -104,7 +104,7 @@ class RecipeAdmin(admin.ModelAdmin):
     empty_value_display = "-пусто-"
 
 
-admin.site.register(Tag, TegAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.unregister(User)
