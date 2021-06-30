@@ -44,7 +44,7 @@
                                     checked
                                    {% endif %}
                                    class="tags__checkbox tags__checkbox_style_{{ tag.color }}">
-                            <label for="id_{{ tag.slug }}" class="tags__label">{{ tag.title }}</label>
+                            <label for="{{ tag.id }}" class="tags__label">{{ tag.title }}</label>
                         </div>
                         {% endfor %}
                     </div>
