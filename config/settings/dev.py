@@ -5,7 +5,7 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'foodgram',
         'USER': 'anya',
         'PASSWORD': '1',
         'HOST': '127.0.0.1',

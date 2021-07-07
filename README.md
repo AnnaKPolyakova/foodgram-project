@@ -16,7 +16,7 @@ pip install -r requirements/local.txt
 Загрузка тестовых данных
 
 ```shell
-python manage.py load_site_and_flatpage test_data/flatpage.json --settings=config.settings.dev
+python manage.py load_site test_data/flatpage.json --settings=config.settings.dev
 python manage.py load_flatpage test_data/flatpage.json --settings=config.settings.dev
 python manage.py load_site_fl_rel test_data/rel_site_fl.json --settings=config.settings.dev
 python manage.py load_measure_ingredient test_data/ingredients.json --settings=config.settings.dev
