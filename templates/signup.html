@@ -19,7 +19,7 @@
                 <div class="form__field-group">
                     <input type="text" name="first_name" id="id_first_name" class="form__input">
                      {% if form.errors %}
-                        <span class="form__error">Ошибка при заполнении поля {{error}}</span>
+                        <span class="form__error">Ошибка при заполнении поля{{ error }}</span>
                      {% endif %}
                 </div>
             </div>
@@ -28,7 +28,8 @@
                 <div class="form__field-group">
                     <input type="text" name="username" id="id_username" class="form__input">
                     {% if form.errors %}
-                        <span class="form__error">Ошибка при заполнении поля {{error}}, возможно такой username уже существует</span>
+                        <span class="form__error">Ошибка при заполнении поля{{ error }}, возможно такой username уже
+                            существует</span>
                     {% endif %}
                 </div>
             </div>

@@ -18,47 +18,16 @@ from recipes.models import (
     RecipeIngredientRelation,
     Tag,
 )
-from recipes.utils import NUMBER_OR_RECIPES, get_recipes_ending
+from recipes.utils import (
+    NUMBER_OR_RECIPES,
+    get_recipes_ending,
+    get_tag,
+    get_recipe_list
+)
 from users.models import User
 
 INGREDIENT = "nameIngredient_"
-TAG = "tag_"
 AMOUNT = "valueIngredient_"
-
-
-def get_tag(request):
-    tags = []
-    for parameter, value in request.GET.items():
-        if parameter.find(TAG, 0) != -1:
-            tags.append(int(value))
-    return tags
-
-
-def get_recipe_list(request, values, favorite=False):
-    recipe_list = []
-    for value in values:
-        if favorite is False:
-            recipe = value
-        else:
-            recipe = value.recipe
-        recipe_list.append(
-            {
-                "recipe": recipe,
-                "purchase": (
-                    request.user.is_authenticated
-                    and Purchase.objects.filter(
-                        recipe=recipe, user=request.user
-                    ).exists()
-                ),
-                "favorite": (
-                    request.user.is_authenticated
-                    and Favorite.objects.filter(
-                        recipe=recipe, user=request.user
-                    ).exists()
-                ),
-            }
-        )
-    return recipe_list
 
 
 def index(request):
@@ -188,7 +157,7 @@ def ingredients_save(request, recipe):
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
-        return render(request, "new_recipe.html", {"form": form})
+        return render(request, "recipe_add_edit.html", {"form": form})
     form.instance.author = request.user
     recipe = form.save()
     ingredients_save(request, recipe)
@@ -212,7 +181,7 @@ def recipe_edit(request, username, recipe_id):
     if not form.is_valid():
         return render(
             request,
-            "new_recipe.html",
+            "recipe_add_edit.html",
             {"form": form, "recipe": recipe_old, "ingredients": ingredients},
         )
     RecipeIngredientRelation.objects.filter(recipe=recipe_old).delete()

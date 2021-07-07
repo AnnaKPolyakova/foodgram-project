@@ -4,9 +4,6 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
-{% block nav %}
-    {% include 'include/nav.html' %}
-{% endblock %}
 {% block content %}
     {% include 'include/tags.html' with tags=tags title=author.get_full_name %}
     {% if user.is_authenticated and author != request.user %}

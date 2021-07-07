@@ -14,7 +14,7 @@
     </div>
     <div class="card-list">
         {% for follow in page %}
-        <div class="card-user" data-author="{{ follow.author.id}}">
+        <div class="card-user" data-author="{{ follow.author.id }}">
         <div class="card-user__header">
             <a href="{% url 'author_page' follow.author.username %}" class="card-user__title">{{ follow.author.get_full_name }}</h2></a>
         </div>

@@ -20,7 +20,7 @@
                     {% endif %}">
                         {% csrf_token %}
                     {% if form.errors %}
-                        <span class="form__error">Ошибка при заполнении поля {{form.errors}}</span>
+                        <span class="form__error">Ошибка при заполнении поля{{ form.errors }}</span>
                      {% endif %}
            <div class="form__group">
                 <label for="id_title" class="form__label">Название рецепта</label>
@@ -99,7 +99,7 @@
                     {% if not recipe %}
                         <input type="file" name="image" id="id_image">
                     {% else %}
-                        {{ form.image}}
+                        {{ form.image }}
                     {% endif %}
                 </div>
             </div>
