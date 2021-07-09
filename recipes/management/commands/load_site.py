@@ -14,8 +14,9 @@ class Command(BaseCommand):
         parser.add_argument("path", nargs="+", type=str)
 
     def handle(self, path, **options):
-        Site.objects.get_or_create(
+        site = Site.objects.get(
             id=int(settings.base.SITE_ID),
-            name="127.0.0.1:8000",
-            domain="127.0.0.1:8000",
         )
+        site.name="127.0.0.1:8000"
+        site.domain="127.0.0.1:8000"
+        site.save()

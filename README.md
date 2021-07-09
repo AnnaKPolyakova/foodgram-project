@@ -14,6 +14,7 @@ pip install -r requirements/local.txt
 ```
 
 Загрузка тестовых данных
+docker-compose exec web
 
 ```shell
 python manage.py load_site test_data/flatpage.json --settings=config.settings.dev
