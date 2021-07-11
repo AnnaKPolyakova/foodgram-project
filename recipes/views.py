@@ -207,7 +207,7 @@ def recipe_delete(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, author=request.user, id=recipe_id)
     if recipe.author == request.user:
         recipe.delete()
-        return redirect("index")
+    return redirect("index")
 
 
 def author_page(request, username):

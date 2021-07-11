@@ -1,7 +1,6 @@
 import json
 
 from django.contrib.flatpages.models import FlatPage
-from django.contrib.sites.models import Site
 from django.core.management import BaseCommand
 
 from config import settings
