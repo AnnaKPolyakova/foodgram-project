@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from api.serializers import (FavoriteSerializer, FollowSerializer)
+from api.serializers import FavoriteSerializer, FollowSerializer
 from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe
 from users.models import User
 

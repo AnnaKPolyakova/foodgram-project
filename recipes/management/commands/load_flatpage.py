@@ -3,8 +3,6 @@ import json
 from django.contrib.flatpages.models import FlatPage
 from django.core.management import BaseCommand
 
-from config import settings
-
 
 class Command(BaseCommand):
     help = "load data"

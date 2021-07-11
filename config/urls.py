@@ -3,11 +3,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.flatpages import views
 from django.urls import include, path
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView,
-)
+from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
+                                   SpectacularSwaggerView)
 
 handler404 = "config.views.page_not_found"
 handler500 = "config.views.server_error"
