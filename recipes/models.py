@@ -85,7 +85,7 @@ class Recipe(models.Model):
     )
     tags = models.ManyToManyField(
         Tag,
-        related_name="recipes",  #recipes
+        related_name="recipes",  # recipes
         verbose_name="Теги",
         help_text="Добавьте тег (один или несколько).",
     )
@@ -150,8 +150,8 @@ class Follow(models.Model):
         verbose_name = "Подписка"
         constraints = [
             models.UniqueConstraint(
-                fields=['author', 'user'],
-                name='unique follow')
+                fields=["author", "user"], name="unique follow"
+            )
         ]
 
     def __str__(self):
@@ -177,8 +177,8 @@ class Favorite(models.Model):
         verbose_name = "Рецепт"
         constraints = [
             models.UniqueConstraint(
-                fields=['user', 'recipe'],
-                name='unique favorite')
+                fields=["user", "recipe"], name="unique favorite"
+            )
         ]
 
     def __str__(self):
@@ -204,8 +204,8 @@ class Purchase(models.Model):
         verbose_name = "Рецепт"
         constraints = [
             models.UniqueConstraint(
-                fields=['user', 'recipe'],
-                name='unique purchase')
+                fields=["user", "recipe"], name="unique purchase"
+            )
         ]
 
     def __str__(self):

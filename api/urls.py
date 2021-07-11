@@ -1,14 +1,8 @@
 from django.urls import path
 
-from api.views import (
-    add_to_favorites,
-    add_to_purchases,
-    delete_from_favorites,
-    delete_from_purchases,
-    getIngredients,
-    profile_follow,
-    profile_unfollow,
-)
+from api.views import (add_to_favorites, add_to_purchases,
+                       delete_from_favorites, delete_from_purchases,
+                       getIngredients, profile_follow, profile_unfollow)
 
 urlpatterns = [
     path("ingredients/", getIngredients, name="api_ingredients"),

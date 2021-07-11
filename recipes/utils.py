@@ -1,4 +1,4 @@
-from recipes.models import Purchase, Favorite
+from recipes.models import Favorite, Purchase
 
 RECIPE = "рецепт"
 TAG = "tag_"

@@ -17,6 +17,6 @@ class Command(BaseCommand):
         site = Site.objects.get(
             id=int(settings.base.SITE_ID),
         )
-        site.name="127.0.0.1:8000"
-        site.domain="127.0.0.1:8000"
+        site.name = "127.0.0.1:8000"
+        site.domain = "127.0.0.1:8000"
         site.save()

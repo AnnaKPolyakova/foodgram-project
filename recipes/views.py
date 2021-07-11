@@ -1,29 +1,14 @@
 from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
-from django.shortcuts import (
-    get_list_or_404,
-    get_object_or_404,
-    redirect,
-    render,
-)
+from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
+                              render)
 
 from recipes.forms import RecipeForm
-from recipes.models import (
-    Favorite,
-    Follow,
-    Ingredient,
-    Purchase,
-    Recipe,
-    RecipeIngredientRelation,
-    Tag,
-)
-from recipes.utils import (
-    NUMBER_OR_RECIPES,
-    get_recipes_ending,
-    get_tag,
-    get_recipe_list
-)
+from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
+                            RecipeIngredientRelation, Tag)
+from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
+                           get_recipes_ending, get_tag)
 from users.models import User
 
 INGREDIENT = "nameIngredient_"
@@ -294,4 +279,3 @@ def shop_list_download(request):
         filename
     )
     return response
-

@@ -4,11 +4,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from api.serializers import (
-    FollowSerializer,
-    PurchasesSerializer,
-    FavoriteSerializer
-)
+from api.serializers import (FavoriteSerializer, FollowSerializer,
+                             PurchasesSerializer)
 from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe
 from users.models import User
 
@@ -38,9 +35,9 @@ def profile_follow(request):
         author = get_object_or_404(User, id=request.data["id"])
         if author != request.user:
             Follow.objects.get_or_create(
-                    user=request.user,
-                    author=get_object_or_404(User, id=request.data["id"]),
-                )
+                user=request.user,
+                author=get_object_or_404(User, id=request.data["id"]),
+            )
             return RESPONSE
     return BAD_RESPONSE
 
@@ -59,9 +56,9 @@ def add_to_purchases(request):
     serializer = FollowSerializer(data=request.data)
     if serializer.is_valid():
         Purchase.objects.get_or_create(
-                user=request.user,
-                recipe=get_object_or_404(Recipe, id=request.data["id"]),
-            )
+            user=request.user,
+            recipe=get_object_or_404(Recipe, id=request.data["id"]),
+        )
         return RESPONSE
     return BAD_RESPONSE
 
