@@ -4,7 +4,6 @@ djangorestframework==3.12.4
 djangorestframework-camel-case==1.2.0
 djangorestframework-simplejwt==4.6.0
 drf-yasg==1.20.0
-flake8==3.9.2
 pycodestyle==2.7.0
 pyflakes==2.3.1
 python-environ==0.4.54
@@ -25,5 +24,3 @@ django-admin-sortable2==1.0
 gunicorn==20.0.4
 flake8==3.9.2
 toml==0.10.2
-black==21.6b0
-flake8-per-file-ignores==0.8.1
