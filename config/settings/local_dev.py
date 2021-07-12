@@ -9,6 +9,7 @@ DATABASES = {
         'USER': 'anya',
         'PASSWORD': '1',
         'HOST': '127.0.0.1',
+        'DB': 'foodgram',
         'PORT': '5432',
     }
 }
