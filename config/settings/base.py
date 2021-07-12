@@ -7,7 +7,7 @@ env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "django-insecure-$mozfaf0chjr_ea32k_!$1otw39b2yk1v)xc6d&p2a*@b(-f$"
 
 ALLOWED_HOSTS = [
     '*',
