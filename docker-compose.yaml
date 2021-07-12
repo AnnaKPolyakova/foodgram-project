@@ -8,8 +8,8 @@ services:
     env_file:
       - ./.env
   web:
-    image: sova040888/foodgram:latest
-#    build: .
+#    image: sova040888/foodgram:latest
+    build: .
     restart: always
 
     volumes:
