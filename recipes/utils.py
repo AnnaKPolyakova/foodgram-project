@@ -10,10 +10,10 @@ def get_recipes_ending(count):
         return None
     elif 0 < count <= NUMBER_OR_RECIPES:
         return "all"
-    count = str(count)[-1]
-    if count == "1":
+    count = int(str(count)[-1]) - NUMBER_OR_RECIPES
+    if count == 1:
         return RECIPE
-    elif count in ["2", "3", "4"]:
+    elif count in [2, 3, 4]:
         return RECIPE + "a"
     else:
         return RECIPE + "ов"
