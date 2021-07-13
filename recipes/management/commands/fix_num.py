@@ -1,19 +1,13 @@
 from django.core.management.color import no_style
 from django.db import connection
 
-from recipes.models import (
-    Recipe,
-    Tag,
-    Ingredient,
-    RecipeIngredientRelation,
-    Follow,
-    Favorite,
-    Purchase
-)
+from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
+                            RecipeIngredientRelation, Tag)
 from users.models import User
 
 sequence_sql = connection.ops.sequence_reset_sql(
-    no_style(), [
+    no_style(),
+    [
         Recipe,
         User,
         Tag,
@@ -21,8 +15,8 @@ sequence_sql = connection.ops.sequence_reset_sql(
         RecipeIngredientRelation,
         Follow,
         Favorite,
-        Purchase
-    ]
+        Purchase,
+    ],
 )
 with connection.cursor() as cursor:
     for sql in sequence_sql:
