@@ -24,10 +24,7 @@ sequence_sql = connection.ops.sequence_reset_sql(
 class Command(BaseCommand):
     help = "load data"
 
-    def add_arguments(self, parser):
-        parser.add_argument("path", nargs="+", type=str)
-
-    def handle(self, path, **options):
+    def handle(self, **options):
         with connection.cursor() as cursor:
             for sql in sequence_sql:
                 cursor.execute(sql)
