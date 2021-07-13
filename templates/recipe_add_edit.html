@@ -40,7 +40,7 @@
                                    name="tags"
                                    value="{{ tag.slug }}"
                                    id="{{ tag.id }}"
-                                   {% if tag in form.instance.tag.all %}
+                                   {% if tag in form.instance.tags.all %}
                                     checked
                                    {% endif %}
                                    class="tags__checkbox tags__checkbox_style_{{ tag.color }}">
