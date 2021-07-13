@@ -14,38 +14,42 @@
     </div>
     <div class="card-list">
         {% for follow in page %}
-        <div class="card-user" data-author="{{ follow.author.id }}">
-        <div class="card-user__header">
-            <a href="{% url 'author_page' follow.author.username %}" class="card-user__title">{{ follow.author.get_full_name }}</h2></a>
-        </div>
-        <div class="card-user__body">
-            <ul class="card-user__items">
-                {% for recipe in follow.recipes %}
+            <div class="card-user" data-author="{{ follow.author.id }}">
+            <div class="card-user__header">
+                <a href="{% url 'author_page' follow.author.username %}" class="card-user__title">{{ follow.author.get_full_name }}</h2></a>
+            </div>
+            <div class="card-user__body">
+                <ul class="card-user__items">
+                    {% for recipe in follow.recipes %}
+                        <li class="card-user__item">
+                            <div class="recipe">
+                                <img src="{{ recipe.image.url }}"
+                                     alt="какой-то-текст" class="recipe__image">
+                                <a href="{% url 'recipe' recipe.author.username recipe.id %}" class="recipe__title">{{ recipe.title }}</a>
+                                <p class="recipe__text"><span
+                                        class="icon-time"></span> {{ recipe.time }} мин.</p>
+                            </div>
+                        </li>
+                    {% endfor %}
                     <li class="card-user__item">
-                        <div class="recipe">
-                            <img src="{{ recipe.image.url }}"
-                                 alt="какой-то-текст" class="recipe__image">
-                            <a href="{% url 'recipe' recipe.author.username recipe.id %}" class="recipe__title">{{ recipe.title }}</a>
-                            <p class="recipe__text"><span
-                                    class="icon-time"></span> {{ recipe.time }} мин.</p>
-                        </div>
+                        {% if follow.recipes_info is None %}
+                            <h3 class="recipe__title">Пользователь пока не добавил рецептов</h3>
+                        {% elif follow.recipes_info == 'all' %}
+                            <h3 class="recipe__title">Вы видите все рецепты автора</h3>
+                        {% else %}
+                            <a href="{% url 'author_page' follow.author.username %}" class="card-user__link link">Еще {{ follow.count }} {{ follow.recipes_info }}...</a>
+                        {% endif %}
                     </li>
-                {% endfor %}
-                <li class="card-user__item">
-                    {% if follow.recipes_info is None %}
-                        <h3 class="recipe__title">Пользователь пока не добавил рецептов</h3>
-                    {% elif follow.recipes_info == 'all' %}
-                        <h3 class="recipe__title">Вы видите все рецепты автора</h3>
-                    {% else %}
-                        <a href="{% url 'author_page' follow.author.username %}" class="card-user__link link">Еще {{ follow.count }} {{ follow.recipes_info }}...</a>
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
-        <div class="card-user__footer">
-            <button class="button button_style_light-blue button_size_auto" name="subscribe">Отписаться</button>
-        </div>
-    </div>
+                </ul>
+            </div>
+            <div class="card-user__footer">
+                {% if follow in page %}
+                    <button class="button button_style_light-blue button_size_auto" name="subscribe">Отписаться</button>
+                {% else %}
+                    <button class="button button_style_light-blue button_size_auto" name="subscribe" data-out>Подписаться на автора</button>
+                {% endif %}
+            </div>
+            </div>
         {% endfor %}
     </div>
     {% include 'include/paginator.html' with items=page paginator=paginator %}

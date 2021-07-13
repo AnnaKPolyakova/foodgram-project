@@ -13,7 +13,7 @@ def get_recipes_ending(count):
     count = str(count)[-1]
     if count == "1":
         return RECIPE
-    elif count in [2, 3, 4]:
+    elif count in ["2", "3", "4"]:
         return RECIPE + "a"
     else:
         return RECIPE + "ов"
