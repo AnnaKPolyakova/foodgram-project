@@ -92,7 +92,7 @@ def favorite_index(request):
     else:
         favorites = get_list_or_404(Favorite, user=request.user)
     recipes = get_recipe_list(request, favorites, favorite=True)
-    if len(tags) != 0:
+    if tags.count() != 0:
         for favorite in favorites:
             if favorite.recipe.tags in request_tag:
                 recipes.append(favorite.recipe)

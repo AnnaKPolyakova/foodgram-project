@@ -15,7 +15,7 @@ BAD_RESPONSE = JsonResponse(
 
 
 @api_view(["GET"])
-def getIngredients(request):
+def get_ingredients(request):
     title = request.GET.get("query", "")
     title = title[:-1]
     ingredient_list = list(
