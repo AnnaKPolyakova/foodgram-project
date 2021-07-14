@@ -7,8 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-# SECRET_KEY = "$mozfaf0chjr_ea32k_!$1otw39b2yk1v)xc6d&p2a*@b(-f$"
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "$mozfaf0chjr_ea32k_!$1otw39b2yk1v)xc6d&p2a*@b(-f$"
 
 ALLOWED_HOSTS = [
     '*',

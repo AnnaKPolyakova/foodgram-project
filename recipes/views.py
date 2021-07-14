@@ -21,7 +21,7 @@ def index(request):
     if request_tag is None:
         recipes = Recipe.objects.all()
     else:
-        recipes = get_list_or_404(Recipe, tags__in=request_tag)
+        recipes = Recipe.objects.filter(tags__in=request_tag).distinct()
     recipe_list = get_recipe_list(request, recipes)
     paginator = Paginator(recipe_list, 9)
     page_number = request.GET.get("page")
@@ -86,9 +86,9 @@ def favorite_index(request):
     tags = Tag.objects.all()
     request_tag = get_tag(request)
     if request_tag is not None:
-        favorites = get_list_or_404(
-            Favorite, recipe__tags__in=request_tag, user=request.user
-        )
+        favorites = Favorite.objects.filter(
+            recipe__tags__in=request_tag, user=request.user
+        ).distinct()
     else:
         favorites = get_list_or_404(Favorite, user=request.user)
     recipes = get_recipe_list(request, favorites, favorite=True)
@@ -212,7 +212,10 @@ def author_page(request, username):
     if request_tag is None:
         recipes = author.recipes.all()
     else:
-        recipes = get_list_or_404(Recipe, tag__in=request_tag, author=author)
+        recipes = Recipe.objects.filter(
+            tag__in=request_tag,
+            author=author
+        ).distinct()
     tags = Tag.objects.all()
     recipe_list = get_recipe_list(request, recipes)
     paginator = Paginator(recipe_list, 9)
