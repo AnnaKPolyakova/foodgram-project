@@ -4,9 +4,6 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/shopList.css' %}">
 {% endblock %}
-{% block nav %}
-    {% include 'include/nav.html' with shop_list=True %}
-{% endblock %}
 {% block content %}
     <div class="main__header">
         <h1 class="main__title">Список покупок</h1>

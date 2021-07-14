@@ -4,9 +4,6 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/form.css' %}">
 {% endblock %}
-{% block nav %}
-    {% include 'include/nav.html' with new_recipe=True %}
-{% endblock %}
 {% block content %}
     <div class="main__header">
         <h1 class="main__title">{% if not recipe %} Создание рецепта {% else %} Редактирование рецепта {% endif %}</h1>

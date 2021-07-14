@@ -4,9 +4,6 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/myFollow.css' %}">
 {% endblock %}
-{% block nav %}
-    {% include 'include/nav.html' with follow=True %}
-{% endblock %}
 {% block content %}
 {% csrf_token %}
     <div class="main__header">

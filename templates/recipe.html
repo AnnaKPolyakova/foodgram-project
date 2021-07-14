@@ -4,9 +4,6 @@
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/single.css' %}">
 {% endblock %}
-{% block nav %}
-    {% include 'include/nav.html' with index=True %}
-{% endblock %}
 {% block content %}
     <main class="main container">
         <div class="single-card" data-id="{{ recipe.id }}" data-author="{{ author.id }}">

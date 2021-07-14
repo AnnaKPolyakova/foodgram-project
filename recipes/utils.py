@@ -24,6 +24,8 @@ def get_tag(request):
     for parameter, value in request.GET.items():
         if parameter.find(TAG, 0) != -1:
             tags.append(int(value))
+    if len(tags) == 0:
+        return None
     return tags
 
 

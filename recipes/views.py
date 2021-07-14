@@ -18,7 +18,7 @@ AMOUNT = "valueIngredient_"
 def index(request):
     request_tag = get_tag(request)
     tags = Tag.objects.all()
-    if len(request_tag) == 0:
+    if request_tag is None:
         recipes = Recipe.objects.all()
     else:
         recipes = get_list_or_404(Recipe, tags__in=request_tag)
@@ -85,17 +85,13 @@ def follow_index(request):
 def favorite_index(request):
     tags = Tag.objects.all()
     request_tag = get_tag(request)
-    if len(request_tag) != 0:
+    if request_tag is not None:
         favorites = get_list_or_404(
-            Favorite, recipe__tag__in=request_tag, user=request.user
+            Favorite, recipe__tags__in=request_tag, user=request.user
         )
     else:
         favorites = get_list_or_404(Favorite, user=request.user)
     recipes = get_recipe_list(request, favorites, favorite=True)
-    if tags.count() != 0:
-        for favorite in favorites:
-            if favorite.recipe.tags in request_tag:
-                recipes.append(favorite.recipe)
     paginator = Paginator(recipes, 3)
     page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
@@ -213,7 +209,7 @@ def recipe_delete(request, username, recipe_id):
 def author_page(request, username):
     request_tag = get_tag(request)
     author = get_object_or_404(User, username=username)
-    if len(request_tag) == 0:
+    if request_tag is None:
         recipes = author.recipes.all()
     else:
         recipes = get_list_or_404(Recipe, tag__in=request_tag, author=author)
