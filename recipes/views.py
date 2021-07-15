@@ -1,18 +1,30 @@
 from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
-from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
-                              render)
+from django.shortcuts import (
+    get_list_or_404,
+    get_object_or_404,
+    redirect,
+    render,
+)
 
 from recipes.forms import RecipeForm
-from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
-                            RecipeIngredientRelation, Tag)
-from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
-                           get_recipes_ending, get_tag)
+from recipes.models import (
+    Favorite,
+    Follow,
+    Purchase,
+    Recipe,
+    RecipeIngredientRelation,
+    Tag,
+)
+from recipes.utils import (
+    NUMBER_OR_RECIPES,
+    get_recipe_list,
+    get_recipes_ending,
+    get_tag,
+    ingredients_save,
+)
 from users.models import User
-
-INGREDIENT = "nameIngredient_"
-AMOUNT = "valueIngredient_"
 
 
 def index(request):
@@ -107,34 +119,6 @@ def favorite_index(request):
     )
 
 
-def ingredients_save(request, recipe):
-    ingredient_order = 0
-    for field, value in request.POST.items():
-        if field.find(INGREDIENT, 0) != -1:
-            field_split = field.split("_")
-            ingredient = get_object_or_404(Ingredient, title=value)
-            if not RecipeIngredientRelation.objects.filter(
-                ingredient=ingredient, recipe=recipe
-            ).exists():
-                RecipeIngredientRelation.objects.create(
-                    ingredient=ingredient,
-                    amount=request.POST[f"{AMOUNT}{field_split[1]}"],
-                    recipe=recipe,
-                    ingredient_order=ingredient_order,
-                )
-                ingredient_order += 1
-            else:
-                recipe_ingredient = get_object_or_404(
-                    RecipeIngredientRelation,
-                    recipe=recipe,
-                    ingredient=ingredient,
-                )
-                recipe_ingredient.amount = recipe_ingredient.amount + int(
-                    request.POST[f"{AMOUNT}{field_split[1]}"]
-                )
-                recipe_ingredient.save()
-
-
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
@@ -213,8 +197,7 @@ def author_page(request, username):
         recipes = author.recipes.all()
     else:
         recipes = Recipe.objects.filter(
-            tag__in=request_tag,
-            author=author
+            tags__in=request_tag, author=author
         ).distinct()
     tags = Tag.objects.all()
     recipe_list = get_recipe_list(request, recipes)

@@ -2,8 +2,15 @@ from django.core.management import BaseCommand
 from django.core.management.color import no_style
 from django.db import connection
 
-from recipes.models import (Favorite, Follow, Ingredient, Purchase, Recipe,
-                            RecipeIngredientRelation, Tag)
+from recipes.models import (
+    Favorite,
+    Follow,
+    Ingredient,
+    Purchase,
+    Recipe,
+    RecipeIngredientRelation,
+    Tag,
+)
 from users.models import User
 
 sequence_sql = connection.ops.sequence_reset_sql(

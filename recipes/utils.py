@@ -1,8 +1,17 @@
-from recipes.models import Favorite, Purchase
+from django.shortcuts import get_object_or_404
+
+from recipes.models import (
+    Favorite,
+    Ingredient,
+    Purchase,
+    RecipeIngredientRelation,
+)
 
 RECIPE = "рецепт"
 TAG = "tag_"
 NUMBER_OR_RECIPES = 3
+INGREDIENT = "nameIngredient_"
+AMOUNT = "valueIngredient_"
 
 
 def get_recipes_ending(count):
@@ -54,3 +63,31 @@ def get_recipe_list(request, values, favorite=False):
             }
         )
     return recipe_list
+
+
+def ingredients_save(request, recipe):
+    ingredient_order = 0
+    for field, value in request.POST.items():
+        if field.find(INGREDIENT, 0) != -1:
+            field_split = field.split("_")
+            ingredient = get_object_or_404(Ingredient, title=value)
+            if not RecipeIngredientRelation.objects.filter(
+                ingredient=ingredient, recipe=recipe
+            ).exists():
+                RecipeIngredientRelation.objects.create(
+                    ingredient=ingredient,
+                    amount=request.POST[f"{AMOUNT}{field_split[1]}"],
+                    recipe=recipe,
+                    ingredient_order=ingredient_order,
+                )
+                ingredient_order += 1
+            else:
+                recipe_ingredient = get_object_or_404(
+                    RecipeIngredientRelation,
+                    recipe=recipe,
+                    ingredient=ingredient,
+                )
+                recipe_ingredient.amount = recipe_ingredient.amount + int(
+                    request.POST[f"{AMOUNT}{field_split[1]}"]
+                )
+                recipe_ingredient.save()
