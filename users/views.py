@@ -1,5 +1,5 @@
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+# from django.core.mail import EmailMessage
+# from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
