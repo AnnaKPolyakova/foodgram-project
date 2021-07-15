@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 
 from recipes.models import (Favorite, Ingredient, Purchase,

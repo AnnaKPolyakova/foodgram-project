@@ -112,7 +112,7 @@ def new_recipe(request):
         return render(
             request,
             "recipe_add_edit.html",
-            {"form": form, "image": form.fields["image"]},
+            {"form": form},
         )
     form.instance.author = request.user
     recipe = form.save()
