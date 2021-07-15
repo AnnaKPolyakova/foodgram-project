@@ -1,29 +1,14 @@
 from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
-from django.shortcuts import (
-    get_list_or_404,
-    get_object_or_404,
-    redirect,
-    render,
-)
+from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
+                              render)
 
 from recipes.forms import RecipeForm
-from recipes.models import (
-    Favorite,
-    Follow,
-    Purchase,
-    Recipe,
-    RecipeIngredientRelation,
-    Tag,
-)
-from recipes.utils import (
-    NUMBER_OR_RECIPES,
-    get_recipe_list,
-    get_recipes_ending,
-    get_tag,
-    ingredients_save,
-)
+from recipes.models import (Favorite, Follow, Purchase, Recipe,
+                            RecipeIngredientRelation, Tag)
+from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
+                           get_recipes_ending, get_tag, ingredients_save)
 from users.models import User
 
 

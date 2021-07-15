@@ -1,11 +1,7 @@
 from django.shortcuts import get_object_or_404
 
-from recipes.models import (
-    Favorite,
-    Ingredient,
-    Purchase,
-    RecipeIngredientRelation,
-)
+from recipes.models import (Favorite, Ingredient, Purchase,
+                            RecipeIngredientRelation)
 
 RECIPE = "рецепт"
 TAG = "tag_"
