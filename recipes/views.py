@@ -8,7 +8,8 @@ from recipes.forms import RecipeForm
 from recipes.models import (Favorite, Follow, Purchase, Recipe,
                             RecipeIngredientRelation, Tag)
 from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
-                           get_recipes_ending, get_tag, ingredients_save)
+                           get_recipes_ending, get_tag, ingredients_check,
+                           ingredients_save)
 from users.models import User
 
 
@@ -106,8 +107,13 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
-    if not form.is_valid():
-        return render(request, "recipe_add_edit.html", {"form": form})
+    if not form.is_valid() or ingredients_check(request) is not None:
+        form.errors["ingredients"] = ingredients_check(request)
+        return render(
+            request,
+            "recipe_add_edit.html",
+            {"form": form, "image": form.fields["image"]},
+        )
     form.instance.author = request.user
     recipe = form.save()
     ingredients_save(request, recipe)

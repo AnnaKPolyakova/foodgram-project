@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 
 from recipes.models import (Favorite, Ingredient, Purchase,
@@ -59,6 +60,18 @@ def get_recipe_list(request, values, favorite=False):
             }
         )
     return recipe_list
+
+
+def ingredients_check(request):
+    count = 0
+    for field, value in request.POST.items():
+        if field.find(INGREDIENT, 0) != -1:
+            if not Ingredient.objects.filter(title=value).exists():
+                return "Можно выбирать только из имеющихся ингредиентов"
+            count += 1
+    if count == 0:
+        return "Обязательное поле."
+    return None
 
 
 def ingredients_save(request, recipe):
