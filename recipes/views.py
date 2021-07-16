@@ -107,9 +107,9 @@ def favorite_index(request):
 
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
+    if request.method != "GET":
+        form.errors["ingredients"] = ingredients_check(request)
     if not form.is_valid():
-        if request.method != "GET":
-            form.errors["ingredients"] = ingredients_check(request)
         return render(
             request,
             "recipe_add_edit.html",

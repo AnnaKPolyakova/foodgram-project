@@ -68,6 +68,9 @@ def ingredients_check(request):
             if not Ingredient.objects.filter(title=value).exists():
                 return "Можно выбирать только из имеющихся ингредиентов"
             count += 1
+            field_split = field.split("_")
+            if int(request.POST[f"{AMOUNT}{field_split[1]}"]) <= 0:
+                return "Количество ингредиентов не может меньше или равно 0"
     if count == 0:
         return "Обязательное поле."
     return None
