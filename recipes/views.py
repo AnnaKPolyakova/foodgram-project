@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
@@ -53,6 +54,7 @@ def tag_recipe(request, slug):
     )
 
 
+@login_required
 def follow_index(request):
     follower = request.user.follower.all()
     follower_list = []
@@ -80,6 +82,7 @@ def follow_index(request):
     )
 
 
+@login_required
 def favorite_index(request):
     tags = Tag.objects.all()
     request_tag = get_tag(request)
@@ -105,6 +108,7 @@ def favorite_index(request):
     )
 
 
+@login_required
 def new_recipe(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
     if request.method != "GET":
@@ -122,6 +126,7 @@ def new_recipe(request):
     return redirect("index")
 
 
+@login_required
 def recipe_edit(request, username, recipe_id):
     if request.user.username != username:
         return redirect("recipe", username, recipe_id)
@@ -175,6 +180,7 @@ def recipe_view(request, username, recipe_id):
     )
 
 
+@login_required
 def recipe_delete(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, author=request.user, id=recipe_id)
     if recipe.author == request.user:
@@ -215,11 +221,13 @@ def author_page(request, username):
     )
 
 
+@login_required
 def shop_list(request):
     purchase_list = request.user.purchase.all()
     return render(request, "shopList.html", {"purchase_list": purchase_list})
 
 
+@login_required
 def shop_list_download(request):
     filename = "purchase.txt"
     recipes = Recipe.objects.filter(purchase__user=request.user)
