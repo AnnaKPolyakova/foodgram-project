@@ -9,11 +9,6 @@ urlpatterns = [
     path("new_recipe/", views.new_recipe, name="new_recipe"),
     path("shop_list/", views.shop_list, name="shop_list"),
     path(
-        "shop_list/<int:recipe_id>/delete/",
-        views.shop_list_delete,
-        name="shop_list_delete",
-    ),
-    path(
         "shop_list/download/",
         views.shop_list_download,
         name="shop_list_download",

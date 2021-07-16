@@ -217,19 +217,7 @@ def author_page(request, username):
 
 def shop_list(request):
     purchase_list = request.user.purchase.all()
-    return render(
-        request, "shopList.html", {"purchase_list": purchase_list}
-    )
-
-
-def shop_list_delete(request, recipe_id):
-    recipe = get_object_or_404(Recipe, id=recipe_id)
-    purchase = get_object_or_404(
-        Purchase,
-        recipe=recipe,
-    )
-    purchase.delete()
-    return redirect("shop_list")
+    return render(request, "shopList.html", {"purchase_list": purchase_list})
 
 
 def shop_list_download(request):
