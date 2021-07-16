@@ -1,5 +1,5 @@
 {% extends "include/base.html" %}
-{% block title %} Создание рецепта {% endblock %}
+{% block title %} Список покупок {% endblock %}
 {% load static %}
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/pages/shopList.css' %}">
@@ -10,7 +10,7 @@
     </div>
     <div class="card-list card-list_column">
         <ul class="shopping-list">
-        {% for purchase in page %}
+        {% for purchase in purchase_list %}
             <li class="shopping-list__item" data-id="{{ purchase.recipe.id }}">
                 <div class="recipe recipe_reverse">
                     <img src="{{ purchase.recipe.image.url }}" alt="какой-то текст" class="recipe__image recipe__image_big">

@@ -217,11 +217,8 @@ def author_page(request, username):
 
 def shop_list(request):
     purchase_list = request.user.purchase.all()
-    paginator = Paginator(purchase_list, 10)
-    page_number = request.GET.get("page")
-    page = paginator.get_page(page_number)
     return render(
-        request, "shopList.html", {"page": page, "paginator": paginator}
+        request, "shopList.html", {"purchase_list": purchase_list}
     )
 
 
