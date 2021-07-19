@@ -9,7 +9,6 @@ services:
       - ./.env
   web:
     image: sova040888/foodgram:latest
-#    build: .
     restart: always
 
     volumes:
