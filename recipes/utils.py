@@ -76,6 +76,17 @@ def ingredients_check(request):
     return None
 
 
+def ingredients_get(request):
+    ingredients = []
+    for field, value in request.POST.items():
+        if field.find(INGREDIENT, 0) != -1:
+            field_split = field.split("_")
+            ingredient = get_object_or_404(Ingredient, title=value)
+            amount = request.POST[f"{AMOUNT}{field_split[1]}"]
+            ingredients.append({"ingredient": ingredient, "amount": amount})
+    return ingredients
+
+
 def ingredients_save(request, recipe):
     ingredient_order = 0
     for field, value in request.POST.items():

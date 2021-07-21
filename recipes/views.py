@@ -10,7 +10,7 @@ from recipes.models import (Favorite, Follow, Purchase, Recipe,
                             RecipeIngredientRelation, Tag)
 from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
                            get_recipes_ending, get_tag, ingredients_check,
-                           ingredients_save)
+                           ingredients_save, ingredients_get)
 from users.models import User
 
 
@@ -116,10 +116,11 @@ def new_recipe(request):
         if error is not None:
             form.errors["ingredients"] = ingredients_check(request)
     if not form.is_valid():
+        ingredients = ingredients_get(request)
         return render(
             request,
             "recipe_add_edit.html",
-            {"form": form},
+            {"form": form, "ingredients": ingredients},
         )
     form.instance.author = request.user
     recipe = form.save()
