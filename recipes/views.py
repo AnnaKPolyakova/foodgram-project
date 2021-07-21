@@ -10,7 +10,7 @@ from recipes.models import (Favorite, Follow, Purchase, Recipe,
                             RecipeIngredientRelation, Tag)
 from recipes.utils import (NUMBER_OR_RECIPES, get_recipe_list,
                            get_recipes_ending, get_tag, ingredients_check,
-                           ingredients_save, ingredients_get)
+                           ingredients_get, ingredients_save)
 from users.models import User
 
 
