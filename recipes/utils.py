@@ -82,7 +82,7 @@ def ingredients_get(request):
         if field.find(INGREDIENT, 0) != -1:
             field_split = field.split("_")
             if Ingredient.objects.filter(title=value).exists():
-                ingredient = Ingredient.objects.filter(title=value)
+                ingredient = get_object_or_404(Ingredient, title=value)
                 amount = request.POST[f"{AMOUNT}{field_split[1]}"]
                 ingredients.append({"ingredient": ingredient, "amount": amount})
     return ingredients
