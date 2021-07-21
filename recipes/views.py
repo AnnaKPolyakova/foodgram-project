@@ -143,7 +143,9 @@ def recipe_edit(request, username, recipe_id):
         instance=recipe_old,
     )
     if request.method == "GET":
-        ingredients = RecipeIngredientRelation.objects.filter(recipe=recipe_old)
+        ingredients = RecipeIngredientRelation.objects.filter(
+            recipe=recipe_old
+        )
     else:
         ingredients = ingredients_get(request)
     if request.method != "GET":
