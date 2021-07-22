@@ -1,6 +1,5 @@
 id,username,password,first_name,last_name,email
-1,admin1,pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O
-/fmpt87MS1CbAVz0fpaSIggk=,Ann,Polyakiva,sova408@mail.ru
+1,admin1,pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=,Ann,Polyakiva,sova408@mail.ru
 2,ann,pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=,Natalya,Ivanova,ann@mail.ru
 3,an2,pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=,Ксения,Кузнецова,an2@mail.ru
 4,an3,pbkdf2_sha256$260000$QIxFi9ieCFpFxowKzSbE76$zFC7+PiE5saNyO/rp6O/fmpt87MS1CbAVz0fpaSIggk=,Татьяна,Сидорова,an3@mail.ru

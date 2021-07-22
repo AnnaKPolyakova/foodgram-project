@@ -148,7 +148,6 @@ def recipe_edit(request, username, recipe_id):
         )
     else:
         ingredients = ingredients_get(request)
-    if request.method != "GET":
         error = ingredients_check(request)
         if error is not None:
             form.errors["ingredients"] = ingredients_check(request)
