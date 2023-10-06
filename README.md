@@ -1,19 +1,19 @@
-Foodgram-project - это онлайн-сервис, где пользователи могут публиковать рецепты, подписываться на других пользователей, сохранять рецепты в «Избранное», скачивать список продуктов необходимых для приготовления одного или нескольких выбранных блюд перед походом в магазин.
+Foodgram-project is an online service where users can publish recipes, subscribe to other users, save recipes to “Favorites,” and download a list of products needed to prepare one or more selected dishes before going to the store.
 
 http://130.193.44.117/
 
-Для запуска проекта у себя локально выполните следующие действия:
+To run the project locally, follow these steps:
 
-Установите зависимости:
+Install dependencies:
 
 ```shell
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
-Создайте переменные окружения:
+Create environment variables:
 
 ```shell
-В файл с названием .env доавляем следующие данные:
+Add the following data to the file called .env:
 SECRET_KEY=
 EMAIL_HOST=
 EMAIL_PORT=
@@ -21,15 +21,15 @@ EMAIL_HOST_USER=
 EMAIL_HOST_PASSWORD=
 ```
 
-Запустите проект:
+Run the project:
 
 ```shell
 ./manage.py runserver --settings=config.settings.local_dev
-или 
+or
 ./manage.py runserver --settings=config.settings.local_prod
 ```
 
-Загрузите тестовые данные (при необходимости):
+Load test data (if necessary):
 
 ```shell
 python manage.py load_site test_data/flatpage.json --settings=config.settings.local_dev
