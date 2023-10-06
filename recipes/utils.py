@@ -13,7 +13,7 @@ AMOUNT = "valueIngredient_"
 def get_recipes_ending(count):
     if count == 0:
         return None
-    elif 0 < count <= NUMBER_OR_RECIPES:
+    if 0 < count <= NUMBER_OR_RECIPES:
         return "all"
     count = int(str(count)[-1]) - NUMBER_OR_RECIPES
     if count == 1:
